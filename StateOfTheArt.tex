@@ -16,12 +16,36 @@ useability to see deep structures is limited \cite{torzilli2014ultrasound}.
 
 \section{Navigation for liver resections}
 Navigation in liver surgeries is mostly done by registering the patient to a pre-operative 3D
-computer tomography (CT) scan of the liver during the surgery. The achieved
-navigation accuracy was $4.5 mm \pm3.6 mm$ \cite{peterhans2011navigation}.
+computer tomography (CT) scan of the liver during the surgery. All surgical
+instruments have trackable markers attached to them. A tracking camera sees
+these markers and can differentiate the different instruments from their attached
+markers. The achieved
+navigation accuracy was $4.5 mm \pm3.6 mm$ averaged over nine surgeries \cite{peterhans2011navigation}.
+Current research tries to compensate for deformations of the liver after the CT
+scan to the actual shape \cite{clements2017deformation}
+\cite{clements2015validation}. 
 
 \subsection{Registration methods}
+Different registration methods exist. Discrete landmarks, surface scans and
+volumetric sonography scans are just a few of the approaches that can be
+used to achieve precise alignment of the preoperative image data with the
+surgical site \cite{banz2016intraoperative}.
+
 \subsection{Tracking modalities}
+To track (define the position and orientation in real time) surgical instruments
+and patient's anatomy during naviagated surgery a tracking system is needed.
+Tracking can be done by different technologies. The most used tracking
+modalities are optical or electromagnetic tracking. 
+
 \subsubsection{Optical tracking}
+Optical tracking is the most used tracking modality in naviagated liver
+surgeries. Passive markers (spherical, retro-reflective that reflect infrared
+light) or active markers (infrared-emitting markers that are activated by an
+electrical signal) \cite{wiles2004accuracy} are attached to the objects that
+need to be tracked. A tracking camera is then emitting infrared light by illuminators
+on the position sensor (only for passive markers). The position sensor
+determines the position and orientation of the tracked instruments based on the
+information it receives from those markers.  \cite{noauthor_polaris_nodate}
 \subsubsection{Electromagnetic tracking}
 \section{Surface reconstruction}
 \section{Others}
