@@ -32,10 +32,10 @@ used to achieve precise alignment of the preoperative image data with the
 surgical site \cite{banz2016intraoperative}.
 
 \subsection{Tracking modalities}
-To track (define the position and orientation in real time) surgical instruments
-and patient's anatomy during naviagated surgery a tracking system is needed.
+To track surgical instruments and patient's anatomy (define the position and
+orientation in real time) during naviagated surgery a tracking system is needed.
 Tracking can be done by different technologies. The most used tracking
-modalities are optical or electromagnetic tracking. 
+modality is optical tracking. 
 
 \subsubsection{Optical tracking}
 Optical tracking is the most used tracking modality in naviagated liver
@@ -45,10 +45,32 @@ electrical signal) \cite{wiles2004accuracy} are attached to the objects that
 need to be tracked. A tracking camera is then emitting infrared light by illuminators
 on the position sensor (only for passive markers). The position sensor
 determines the position and orientation of the tracked instruments based on the
-information it receives from those markers.  \cite{noauthor_polaris_nodate}
-\subsubsection{Electromagnetic tracking}
+information it receives from those markers \cite{noauthor_polaris_nodate}.  
+
 \section{Surface reconstruction}
-\section{Others}
+A surface reconstruction's goal is to create a surface from sampling points. Two
+main steps need to be processed. First, collecting the sample points. Second,
+apply a reconstruction algorithm to the sampled points. There exist different
+methods of collecting surface points
+\cite{franca20053d}\cite{levoy2000digital}\cite{cui20113d}\cite{chu2002infrared}\cite{dou20153d}.
+Optical (non-contact scan) scans are the most popular ones. Specialy laser based
+scanners can scan very fast and with a precision in the order of micrometers. Also contact scans exist
+\cite{pai2001scanning}. Contact scans can also be very precise (in the order of
+micrometers).
+The resulting sampling points lie on or near an unknown surface. A
+reconstruction algorithm has now to reconstruct the surface from these points.
+Again, a lot of reconstruction algorithms exist \cite{lim2014surface}. Only a
+few articles were published in the
+field of liver surface scanning \cite{maier2014comparative} \cite{thompson2015accuracy}. 
+
+
+
+% \begin{itemize}
+%   \item not tracked laproscopic one shot images stereo with registration
+%   \item moved laproscopic tracked endoscope stereo with registration 
+% \end{list}
+
+% \cite{hoppe1992surface}
 
 \endinput
 %%% Local Variables:
