@@ -12,7 +12,22 @@ ultrasound speed in travelling through the tissue. The resolution of the
 ultrasound images depends on the frequency of the ultrasound waves. High
 frequencies lead to high resolutions but low depth into the tissue because the
 absorption of the sound energy increases with frequency too. Therefore the
-useability to see deep structures is limited \cite{torzilli2014ultrasound}.
+useability to see deep structures is limited \cite{torzilli2014ultrasound}. In
+liver surgeries the ultrasound is used for intraoperative planning and
+navigation inside the liver. Figure \ref{fig:liverUS} shows an example of an
+ultrasound image of the liver and its corresponding position in the 3D liver
+model. The surgeon can find the tumors inside the liver by using the ultrasound.
+Registration methods based on 3D ultrasound reconstructed liver vessels also
+exist but are not used a lot yet \cite{lange2003vessel}.
+
+\begin{figure}[H]
+  \centering
+ \includegraphics[width=\textwidth]{liverUS}
+ \caption{ Left (a) ultrasound image plane in the liver. Right (b) intraoperative
+   ultrasound image. One can see the right hepatic vein (RHV), the portal branch
+   to segments 5 and 8 (P5-8) and the portal branch to segments 6 and 7 (P6-7) \cite{torzilli2014ultrasound}}
+  \label{fig:liverUS}
+\end{figure}
 
 \section{Navigation for liver resections}
 Navigation in liver surgeries is mostly done by registering the patient to a pre-operative 3D
