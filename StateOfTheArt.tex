@@ -18,7 +18,8 @@ navigation inside the liver. Figure \ref{fig:liverUS} shows an example of an
 ultrasound image of the liver and its corresponding position in the 3D liver
 model. The surgeon can find the tumors inside the liver by using the ultrasound.
 Registration methods based on 3D ultrasound reconstructed liver vessels also
-exist but are not used a lot yet \cite{lange2003vessel}.
+exist but are not used in practice a lot yet \cite{lange2003vessel}. Therefore
+ultrasound is an important and established instrument in liver surgeries.
 
 \begin{figure}[H]
   \centering
@@ -30,15 +31,28 @@ exist but are not used a lot yet \cite{lange2003vessel}.
 \end{figure}
 
 \section{Navigation for liver resections}
-Navigation in liver surgeries is mostly done by registering the patient to a pre-operative 3D
+The actual intervention in computer assisted surgeries (CAS) is defined as
+surgical navigation. For navigated surgeries special instruments are used. These
+instruments are tracked by the naviagation system. The orientation and position
+of the instruments in relation to the patient's anatomy is visualized on a
+monitor in the operating room. The surgeon can then see what he does on the
+monitor and uses the system to navigate the location and position of its
+instruments. This is specialy then useful when the tip of the instrument is not
+actually visible for the suergeon. 
+In liver surgeries, the navigation is mostly done by first registering the patient to a pre-operative 3D
 computer tomography (CT) scan of the liver during the surgery. All surgical
-instruments have trackable markers attached to them. A tracking camera sees
+instruments have trackable markers attached to them and a tracking camera sees
 these markers and can differentiate the different instruments from their attached
 markers. The achieved
-navigation accuracy was 4.5 mm $\pm$3.6 mm averaged over nine surgeries \cite{peterhans2011navigation}.
+navigation accuracy with such a system was 4.5 mm $\pm$3.6 mm averaged over nine surgeries \cite{peterhans2011navigation}.
 Current research tries to compensate for deformations of the liver after the CT
-scan to the actual shape \cite{clements2017deformation}
+scan to the actual shape of the liver \cite{clements2017deformation}
 \cite{clements2015validation}. 
+\subsection{Creation of preoperative 3D-models}
+
+
+\cite{numminen2005preoperative} time consuming and method to create 3d-model
+from CT
 
 \subsection{Registration methods}
 Different registration methods exist. Discrete landmarks, surface scans and
@@ -62,21 +76,49 @@ on the position sensor (only for passive markers). The position sensor
 determines the position and orientation of the tracked instruments based on the
 information it receives from those markers \cite{noauthor_polaris_nodate}.  
 
-\section{Surface reconstruction}
+\section{Surface reconstruction of unorganized points}
 A surface reconstruction's goal is to create a surface from sampling points. Two
 main steps need to be processed. First, collecting the sample points. Second,
-apply a reconstruction algorithm to the sampled points. There exist different
-methods of collecting surface points
+apply a reconstruction algorithm to the sampled points.
+\subsection{Data acquisition}
+There exist different methods of collecting surface points
 \cite{franca20053d}\cite{levoy2000digital}\cite{cui20113d}\cite{chu2002infrared}\cite{dou20153d}.
 Optical (non-contact scan) scans are the most popular ones. Specialy laser based
 scanners can scan very fast and with a precision in the order of micrometers. Also contact scans exist
 \cite{pai2001scanning}. Contact scans can also be very precise (in the order of
 micrometers).
+Only a few articles were published in the field of liver surface scanning \cite{maier2014comparative} \cite{thompson2015accuracy}. 
+They used stereo laparoscopic cameras to sample the surface.
 The resulting sampling points lie on or near an unknown surface. A
 reconstruction algorithm has now to reconstruct the surface from these points.
-Again, a lot of reconstruction algorithms exist \cite{lim2014surface}. Only a
-few articles were published in the
-field of liver surface scanning \cite{maier2014comparative} \cite{thompson2015accuracy}. 
+\subsection{Reconstruction algorithms}
+Again, a lot of reconstruction algorithms exist \cite{lim2014surface}, but not
+all of them are made to reconstruct from unorganized points. This means
+that the point orders, orientations, connections and the topological type of the
+surface is not known a priori. Therefore it is necessary that the algorithm does not assume any structure
+on the data points \cite{hornung2006robust} \cite{yu1999surface}. The orientations, connections and the topological
+type must be inferred from the points. This is a major difficulty of the general surface
+reconstruction problem \cite{hoppe1992surface}. In the past few decades, many
+algorithms that can solve this problem have been published. Nevertheless it is
+still a challanging task that is part of current research \cite{li2018surface}.
+The available reconstrction types can be classified into two groups: implicit
+volume-based and explicit mesh-based reconstructions.
+\subsubsection{Explicit mesh-based reconstrction}
+Explicit mesh-based reconstrction methods form a triangular mesh directly from
+the unorganized points. These mesh-based reconstructions are precise but they
+have problems with noise, complex shapes and especially holes in data.
+\subsubsection{Implicit volume-based reconstrction}
+Implicit volume-based reconstruction techniques construct an implicit
+volume-function from the input points. From the iso-surface of the
+volume-function a restored surface can then be optained. For these methods it is
+not a problem if the surface topology is complex. But most of these methods
+suffer from oversmoothing the data and the need of accurate directions of normal
+vectors in addition to the unorganized points. 
+
+
+\cite{kazhdan2005reconstruction} oriented point set hornung2006robust
+\cite{hornung2006robust} non uniformly sampled point clouds without normal information
+\cite{yu1999surface} NN to reconstruct from unorganized points
 
 
 
