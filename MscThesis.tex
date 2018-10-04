@@ -31,7 +31,28 @@
 \usepackage{unibe-msc}
 \usepackage[caption=off]{subfig}
 \usepackage{hyperref}
-\usepackage{float}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Luca Sahli's setup
+% *******************************************************************
+% *******************************************************************
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Luca Sahli's packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{float} % better positioning of images
+\usepackage{verbatim} % comment environment (that skips everything between \begin{comment} and \end{comment})
+\usepackage{smartdiagram} % create ‘smart’ diagrams from lists of items, for simple documents and for presentations. 
+% \usepackage{subcaption} % provides a means of using facilities analagous to those of the caption package, when writing captions for subfigures and the like
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Luca Sahli's commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\addheight}[2][.5ex]{%
+  \raisebox{0pt}[\dimexpr\height+(#1)\relax]{#2}%
+}
+% *******************************************************************
+% *******************************************************************
+
 
 
 % Default graphics path
@@ -73,7 +94,6 @@
 \bibliographystyle{ieee}
 
 \begin{document}
-SDFSDFSDF
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Titlepage, abstract table of contents etc.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
