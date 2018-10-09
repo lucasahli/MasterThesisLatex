@@ -20,11 +20,40 @@ The software in this system consists of:
   \item a navigation mode used to navigate during the removal of the tumor
 \end{itemize}
 \section{Functionalities}
+The three main functionalities of the developed concept will be presented in
+this chapter. These functionalities were specifically developed for this project.
 \subsection{Surface Reconstruction}
+During surgery ultrasound images and their corresponding 6D poses (positions and
+orientations) are collected and analyzed. First each ultrasound image has to be
+checked for contact with the liver. If the ultrasound passes the check, that
+means the ultrasound image looks like an ultrasound image that can only arise
+when the ultrasound probe lies on the liver surface, then the position of this
+image can be used.
+
+In order to use the sampled position corresponding to an image, this
+position has to be transformed into the correct coordinate system first. There
+are four different coordinate systems. The first coordinate system is the image
+coordinate system. The units in the image coordinate system are pixels and the
+origin is in the top left corner of the image. The
+second coordinate system is the ultrasound coordinate system. The origin of this
+coordinate system is at the probe tip in the middle and the units in this and
+the following coordinate systems are millimeters. The third coordinate system is the
+ultrasound-tool-marker coordinate system. The origin is ... . The final
+coordinate system is the tracking camera coordinate system. The origin of this
+coordinate system is at the position sensor in the tracking camera and can not
+be changed.
+
+At the end of this transformation chain, a image pixel 2D position was
+transformed into a tracking camera 3D positon and the units changed
+from pixel to millimeter. This location in the tracking camera coordinate system
+will be added to the collection of points to later reconstruct the surface from.
+
 \subsection{Tumor Segmentation}
 \subsubsection{(Automatic 3D)}
 \subsection{Resection Planning}
 \section{Workflow}
+In this chapter the conceptual workfolw through a liver resection using the
+developed system will be presented.
 \subsection{Resection planning for non-anatomical ...}
 
 %%% Local Variables:
