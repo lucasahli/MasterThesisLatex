@@ -45,12 +45,43 @@ be changed.
 
 At the end of this transformation chain, a image pixel 2D position was
 transformed into a tracking camera 3D positon and the units changed
-from pixel to millimeter. This location in the tracking camera coordinate system
+from pixel to millimeter. This 3D location in the tracking camera coordinate system
 will be added to the collection of points to later reconstruct the surface from.
 
+After collecting the surface points, the reconstruction algorithm from Hoppe
+\cite{hoppe1992surface} reconstructs the surface from these points.
 \subsection{Tumor Segmentation}
-\subsubsection{(Automatic 3D)}
+To reconstruct and later plan the resection of a tumor, the shape
+of the tumor has to be made visible first. Because most liver tumors are not visible from the outside of the liver, an
+ultrasound device is mostly used during liver resections to look behind the
+liver surface.
+Most tumors have roundish shapes and a sphere is the easiest
+geometrical shape that can be used to approximate a tumor's real shape. To
+define a sphere two components are needed: the location and the radius of the
+spere.
+To find the location of the tumor, the surgeon locates the tumor with the
+ultrasound. Then he freezes the ultrasound image that cuts through the middle of
+the tumor. The 6D pose of that ultrasound image is stored and the image is
+passed to the next step. The tumor on the image has to be segmented. This
+segmentation is done semi automatically. That means the surgeon has to
+roughly initialize the segmentation manually and then the graph cut algorithm
+implemented by openCV will segment the the tumor. From the resulting
+segmentation shape, the tumor center and radius are estimated. The center
+corresponds to the mean of the segmented boarder pixels and the radius is the
+mean between the largest and the shortest distance from the boarder pixels to
+the estimated center pixel. By using the 6D pose corresponding to the ultrasoud
+image used for the segmentation, the center pixel gets transformed into the
+tracking camera coordinate system. Finally the sphere that approximates the
+tumor can be drawn into the same coordinate system as the liver surface.
+\subsubsection{Automatic 3D}
+
 \subsection{Resection Planning}
+For parenchymal-sparing liver resections, the goal is to keep as much healthy tissue as
+possible. When the location in the liver and the size of the tumor are known, one can plan a
+precise resection from these informations.
+% After collecting the needed
+% information as described in the previous sections, the planning can 
+
 \section{Workflow}
 In this chapter the conceptual workfolw through a liver resection using the
 developed system will be presented.
