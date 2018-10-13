@@ -66,12 +66,20 @@ pixels can be calculated. These positions will create a point cloud that
 represents the shape of the tumor. This shape can then be reconstructed by a
 surface reconstruction algorithm.
 \subsubsection{Semi automatic 3D}
-In order to semi automatically segment the tumor in a liver, the segmentation
-has to be initialized manually. 
+In order to semi automatically segment a tumor in the liver, the segmentation
+has to be initialized manually. To do so, a sphere needs to be
+placed in the center of the tumor manually. Afterwards each ultrasound image
+which cuts this sphere will be segmented automatically with the cutted area as
+an initialization for the segmentation. These segmentations would be used to
+reconstruct the surface of the tumor.
 \subsection{Resection Planning}
 For parenchymal-sparing liver resections, the goal is to keep as much healthy tissue as
-possible. When the location in the liver and the size of the tumor are known, one can plan a
-precise resection from these informations.
+possible. When the tumor's location in the liver and the size are known, one can plan a
+precise resection from these informations. The surgeon is able to choose
+which shape the resection plane will have and how much safety margin he wants to
+add around the tumor. Then a resection which fulfills the desired requirements
+will be shown to the surgeon. This resection could then be fine tuned before the
+surgeon starts the resection.
 % After collecting the needed
 % information as described in the previous sections, the planning can 
 
