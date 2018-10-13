@@ -176,7 +176,6 @@ the mean decreases together with the neighborhood size used for the
 reconstruction. But this is only true for neighborhood sizes larger than 13.
 Because from neighborhood size 13 till 10 the standard deviation increases not
 till then it decreases again. 
-
 \begin{figure}[h]
   \centering
  \includegraphics[width=0.9\textwidth]{gridSearchResultSTDCrop}
@@ -185,15 +184,30 @@ till then it decreases again.
     surface of the same liver phantom.}
   \label{fig:gridSearchResultSTD}
 \end{figure}
-
 By simply summing up the mean and the standard deviation, one finds that the
 optimal parameters for the tested surface samplings are 13 for the neighborhood
 size and 30 mm for the sample spacing.
-
-
-grid search
 \section{Tumor Segmentation}
+To create a model of a tumor
 
+Most tumors have roundish shapes. and a sphere is the easiest
+geometrical shape that can be used to approximate a tumor's real shape. To
+define a sphere two components are needed: the location and the radius of the
+spere.
+To find the location of the tumor, the surgeon locates the tumor with the
+ultrasound. Then he freezes the ultrasound image that cuts through the middle of
+the tumor. The 6D pose of that ultrasound image is stored and the image is
+passed to the next step. The tumor on the image has to be segmented. This
+segmentation is done semi automatically. That means the surgeon has to
+roughly initialize the segmentation manually and then the graph cut algorithm
+implemented by openCV will segment the the tumor. From the resulting
+segmentation shape, the tumor center and radius are estimated. The center
+corresponds to the mean of the segmented boarder pixels and the radius is the
+mean between the largest and the shortest distance from the boarder pixels to
+the estimated center pixel. By using the 6D pose corresponding to the ultrasoud
+image used for the segmentation, the center pixel gets transformed into the
+tracking camera coordinate system. Finally the sphere that approximates the
+tumor can be drawn into the same coordinate system as the liver surface.
 \begin{figure}[H]
   \centering
  \includegraphics[width=1.2\textwidth]{ThirdFlowChart}

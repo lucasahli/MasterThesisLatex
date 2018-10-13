@@ -38,7 +38,8 @@ origin is in the top left corner of the image. The
 second coordinate system is the ultrasound coordinate system. The origin of this
 coordinate system is at the probe tip in the middle and the units in this and
 the following coordinate systems are millimeters. The third coordinate system is the
-ultrasound-tool-marker coordinate system. The origin is ... . The final
+ultrasound-tool-marker coordinate system. The origin is at a user defined
+location, relative to the reflective marker spheres. The final
 coordinate system is the tracking camera coordinate system. The origin of this
 coordinate system is at the position sensor in the tracking camera and can not
 be changed.
@@ -53,28 +54,20 @@ After collecting the surface points, the reconstruction algorithm from Hoppe
 \subsection{Tumor Segmentation}
 To reconstruct and later plan the resection of a tumor, the shape
 of the tumor has to be made visible first. Because most liver tumors are not visible from the outside of the liver, an
-ultrasound device is mostly used during liver resections to look behind the
+ultrasound device is often used during liver resections to look behind the
 liver surface.
-Most tumors have roundish shapes and a sphere is the easiest
-geometrical shape that can be used to approximate a tumor's real shape. To
-define a sphere two components are needed: the location and the radius of the
-spere.
-To find the location of the tumor, the surgeon locates the tumor with the
-ultrasound. Then he freezes the ultrasound image that cuts through the middle of
-the tumor. The 6D pose of that ultrasound image is stored and the image is
-passed to the next step. The tumor on the image has to be segmented. This
-segmentation is done semi automatically. That means the surgeon has to
-roughly initialize the segmentation manually and then the graph cut algorithm
-implemented by openCV will segment the the tumor. From the resulting
-segmentation shape, the tumor center and radius are estimated. The center
-corresponds to the mean of the segmented boarder pixels and the radius is the
-mean between the largest and the shortest distance from the boarder pixels to
-the estimated center pixel. By using the 6D pose corresponding to the ultrasoud
-image used for the segmentation, the center pixel gets transformed into the
-tracking camera coordinate system. Finally the sphere that approximates the
-tumor can be drawn into the same coordinate system as the liver surface.
-\subsubsection{Automatic 3D}
 
+Therefore this ultrasound device should also be used to
+reconstruct the shape of a tumor. This is done by segmenting the same tumor on
+multiple ultrasound images. Depending on the desired resolution of the
+reconstructed tumor, more or less images have to be segmented. With the corresponding
+poses of the ultrasound images, the 3D positions of the individual contour
+pixels can be calculated. These positions will create a point cloud that
+represents the shape of the tumor. This shape can then be reconstructed by a
+surface reconstruction algorithm.
+\subsubsection{Semi automatic 3D}
+In order to semi automatically segment the tumor in a liver, the segmentation
+has to be initialized manually. 
 \subsection{Resection Planning}
 For parenchymal-sparing liver resections, the goal is to keep as much healthy tissue as
 possible. When the location in the liver and the size of the tumor are known, one can plan a
