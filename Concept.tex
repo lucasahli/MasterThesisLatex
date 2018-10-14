@@ -77,15 +77,42 @@ For parenchymal-sparing liver resections, the goal is to keep as much healthy ti
 possible. When the tumor's location in the liver and the size are known, one can plan a
 precise resection from these informations. The surgeon is able to choose
 which shape the resection plane will have and how much safety margin he wants to
-add around the tumor. Then a resection which fulfills the desired requirements
-will be shown to the surgeon. This resection could then be fine tuned before the
+add around the tumor. Then a resection plane which fulfills the desired requirements
+will be shown to the surgeon. This resection plane could then be fine tuned before the
 surgeon starts the resection.
 % After collecting the needed
 % information as described in the previous sections, the planning can 
 
 \section{Workflow}
-In this chapter the conceptual workfolw through a liver resection using the
-desired system will be presented.
+In this section the conceptual workfolw through a liver resection using the
+desired system will be presented. The following flow diagram shows the five main
+steps (Figure \ref{fig:conceptWorkflow}).
+\begin{figure}[H]
+  \centering
+  \smartdiagram[sequence diagram]{Preparation, Liver scanning, Tumor scanning,
+    Resection planning,  Removal of the tumor}
+  \caption{The main steps the surgeon has to do during a surgery with the
+    proposed system.}
+  \label{fig:conceptWorkflow}
+\end{figure}
+In the preparation step the patient is prepared for the surgery, the
+navigation system is setup in the operating room and the software is started.
+Then the tools are setup. Afterwards the surgery starts, the intervention starts and the liver gets
+prepared for the resection. Subsequently step two starts. In this step the
+surgeon scans the liver surface with an ultrasound probe. He does that till a 3D
+model of the for the surgery needed part of liver is reconstructed. Thereafter
+follows the tumor scanning step. Here the surgeon locates a tumor using the
+ultrasound probe again. Then he freezes the ultrasound image and initializes the
+segmentation of it. After this the surgeon moves the ultrasound probe in
+different directions such that the ultrasound images cut through the tumor. He
+does that till the tumor is accurately enough reconstructed. Afterwards follows
+step four. To plan the resection the surgeon has to select the shape of the
+resection plane he wants to apply for this resection intervention. If necessary
+he adjusts the resection plane manually. Finally he uses the created model and
+planning to resect the tumor. 
+% By use of the initialization the tumor is
+% segmented on the ultrasound images. Then the segmentations are combined in order
+% to reconstruct a 3D model of the tumor.  
 \subsection{Resection planning for non-anatomical ...}
 
 %%% Local Variables:

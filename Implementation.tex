@@ -188,16 +188,22 @@ By simply summing up the mean and the standard deviation, one finds that the
 optimal parameters for the tested surface samplings are 13 for the neighborhood
 size and 30 mm for the sample spacing.
 \section{Tumor Segmentation}
-To create a model of a tumor
+\label{sec:tumorSegmentation}
+The flow diagram in figure \ref{fig:ThirdFlowChart} helps to understand the
+following explanation of the creation of a tumor 3D model.
+To create a 3D model of a tumor, the surgeon has to freeze an ultrasound image
+such that the real tumor center is visible on this image. To find the location
+of the tumor's center, the surgeon locates the tumor with the
+ultrasound. Then he freezes the ultrasound image that cuts through the middle of
+the tumor. The 6D pose of that ultrasound image is stored and the image is
+passed to the next step.
 
 Most tumors have roundish shapes. and a sphere is the easiest
 geometrical shape that can be used to approximate a tumor's real shape. To
 define a sphere two components are needed: the location and the radius of the
 spere.
-To find the location of the tumor, the surgeon locates the tumor with the
-ultrasound. Then he freezes the ultrasound image that cuts through the middle of
-the tumor. The 6D pose of that ultrasound image is stored and the image is
-passed to the next step. The tumor on the image has to be segmented. This
+
+To get more information about the tumor, the tumor on the freezed image has to be segmented. This
 segmentation is done semi automatically. That means the surgeon has to
 roughly initialize the segmentation manually and then the graph cut algorithm
 implemented by openCV will segment the the tumor. From the resulting
@@ -216,8 +222,10 @@ tumor can be drawn into the same coordinate system as the liver surface.
   \label{fig:ThirdFlowChart}
 \end{figure}
 
-graph cuts
-initialization method
+\subsection{Initialization method}
+As explained in section \ref{sec:tumorSegmentation}, the segmentation of the
+tumor has to be initialized manually.
+\subsection{Graph cuts}
 \section{Resection Planning}
 \subsection{Cone fitting around tumor}
 \section{Visualization for navigation}
