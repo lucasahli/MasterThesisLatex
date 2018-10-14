@@ -225,6 +225,22 @@ tumor can be drawn into the same coordinate system as the liver surface.
 \subsection{Initialization method}
 As explained in section \ref{sec:tumorSegmentation}, the segmentation of the
 tumor has to be initialized manually.
+\begin{figure}[H]
+  \centering
+  \minipage{0.62\linewidth}
+  \includegraphics[width=\linewidth]{InitializationDrawing}
+  \endminipage
+  \hfill
+  \minipage{0.32\linewidth}
+  \includegraphics[width=\linewidth]{InitializationControls}
+  \endminipage
+  \hfill
+  \caption{On the left side: Initialization drawing for the segmentation of the tumor. Red the
+    pixels which are tumor pixels. And orange the pixels that are from the tumor
+  or the background. The not colored pixels represent background. On the right
+  side: Controls to manipulate the initial segmentation.}
+  \label{fig:InitializeGraphCut}
+\end{figure}
 \subsection{Graph cuts}
 \section{Resection Planning}
 \subsection{Cone fitting around tumor}
