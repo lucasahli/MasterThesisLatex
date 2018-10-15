@@ -224,7 +224,16 @@ tumor can be drawn into the same coordinate system as the liver surface.
 
 \subsection{Initialization method}
 As explained in section \ref{sec:tumorSegmentation}, the segmentation of the
-tumor has to be initialized manually.
+tumor has to be initialized manually. This is done by drawing onto an
+initialization mask. The surgeon draws two circles onto the mask. After clicking in the middle of the tumor, two
+circles are drawn onto the mask. An orange
+circle for the pixels that should be looked at to find the boundary of the
+tumor (Figure \ref{fig:InitializeGraphCut}). And a red circle to color pixels surely
+originating from the tumor. Most of the time the two circles need to be
+increased or decreased in size. This is done by clicking the plus or minus
+buttons. Both circles are changed at the same time. The position can be changed
+by using the arrow buttons. As soon as the surgeon is satisfied, he confirms the
+initialization and the created initialization mask is passed to the segmentation algorithm.
 \begin{figure}[H]
   \centering
   \minipage{0.62\linewidth}
@@ -235,13 +244,71 @@ tumor has to be initialized manually.
   \includegraphics[width=\linewidth]{InitializationControls}
   \endminipage
   \hfill
-  \caption{On the left side: Initialization drawing for the segmentation of the tumor. Red the
-    pixels which are tumor pixels. And orange the pixels that are from the tumor
-  or the background. The not colored pixels represent background. On the right
-  side: Controls to manipulate the initial segmentation.}
+  \caption{On the left side: Initialization drawing for the segmentation of the
+    tumor. Red the pixels which are tumor pixels. And orange the pixels that are
+    from the tumor or the background. The not colored pixels represent
+    background. On the right side: Controls to manipulate the initial segmentation.}
   \label{fig:InitializeGraphCut}
 \end{figure}
+
 \subsection{Graph cuts}
+For the segmentation a graph cuts algorithm is used. This algorithm treats
+pixels as set of nodes connected in a graph (Figure
+\ref{fig:graphCutsExplanaition}). Foreground and background are initialized by
+selecting parts in the image.
+% Some pixels have to be initialized
+% as foreground and background.
+Pixels labeled foreground belong to the source and
+background labeled ones to the sink. The nodes (pixels) are connected to their
+neighbors, the source, and the sink by
+edges whose weights are defined as follows:
+\begin{itemize}
+  \item Node to source $\rightarrow$ Probability of the node to belong to the source (foreground)
+  \item Node to sink $\rightarrow$ Probability of the node to belong to the sink (background)
+  \item Node to adjacent node $\rightarrow$ Similarity measure to its neighboring node. 
+\end{itemize}
+A weight of an edge to adjacent node depends on the similarity between pixel intensities.
+The edges between adjacent nodes, initialized to the same label, have an
+infinitly high weight.
+After calculating all the weights in the graph, it has to be cutted in order to
+create a segmentation. All pixels not assigned already in advance foreground or background will get assigned by
+cutting the graph. The cutting is done by a min-cut. This means one separates the
+source from the sink by removing edges. All weights of the removed edges have to be summed up.
+The sum should be as small as possible and still separate the two from each
+other. This way you can find a group of foreground and background pixels.
+\begin{figure}[H]
+  \centering
+  \minipage{0.10\linewidth}
+  \includegraphics[width=\linewidth]{GraphCuts0} 
+  \endminipage
+  \hfill
+  \minipage{0.22\linewidth}
+  \includegraphics[width=\linewidth]{GraphCuts1} 
+  \endminipage
+  \hfill 
+  \minipage{0.22\linewidth}
+  \includegraphics[width=\linewidth]{GraphCuts2} 
+  \endminipage
+  \hfill
+  \minipage{0.22\linewidth}
+  \includegraphics[width=\linewidth]{GraphCuts3} 
+  \endminipage
+  \hfill
+  \minipage{0.22\linewidth}
+  \includegraphics[width=\linewidth]{GraphCuts4} 
+  \endminipage
+  \hfill
+ \caption{From left to right the steps of a graph cut segmentation. The first
+   image shows the nine pixels to separate into foreground and background. A
+   clear blue and a clear red drawing onto two pixels indicate the initialized
+   foreground and background. The
+   second image ilustrates the probabilities of each pixel belonging to the
+   foreground or the background. The third image shows the edges between
+   neighboring pixels in orange. The fourth image shows the edges to be cut as
+   dashed lines. Finally the last image shows the result for foreground and background. }
+  \label{fig:graphCutsExplanaition}
+\end{figure}
+
 \section{Resection Planning}
 \subsection{Cone fitting around tumor}
 \section{Visualization for navigation}
