@@ -85,7 +85,7 @@ of a position compared to its k-nearest neighbors (Figure
 
 \begin{figure}[H]
   \centering
- \includegraphics[width=0.8\textwidth]{lofExample}
+ \includegraphics[width=0.6\textwidth]{lofExample}
   \caption{Example of the local outlier factors in a two dimensional pointcloud \cite{pictureLOF}.}
   \label{fig:lofExample}
 \end{figure}
@@ -269,13 +269,18 @@ edges whose weights are defined as follows:
 \end{itemize}
 A weight of an edge to adjacent node depends on the similarity between pixel intensities.
 The edges between adjacent nodes, initialized to the same label, have an
-infinitly high weight.
+infinitly high weight \cite{wiki:MaxFlow}.
+
 After calculating all the weights in the graph, it has to be cutted in order to
 create a segmentation. All pixels not assigned already in advance foreground or background will get assigned by
-cutting the graph. The cutting is done by a min-cut. This means one separates the
-source from the sink by removing edges. All weights of the removed edges have to be summed up.
-The sum should be as small as possible and still separate the two from each
-other. This way you can find a group of foreground and background pixels.
+cutting the graph. The segmentation is obtained in form of a min-cut
+\cite{Bagci2016} in which edges are removed to separate source and sink, and sum of their weights is
+minimized.
+% This means one separates the
+% source from the sink by removing edges. All weights of the removed edges have to be summed up.
+% The sum should be as small as possible and still separate the two from each
+% other.
+This way you can find a group of foreground and background pixels.
 \begin{figure}[H]
   \centering
   \minipage{0.10\linewidth}
@@ -305,12 +310,60 @@ other. This way you can find a group of foreground and background pixels.
    second image ilustrates the probabilities of each pixel belonging to the
    foreground or the background. The third image shows the edges between
    neighboring pixels in orange. The fourth image shows the edges to be cut as
-   dashed lines. Finally the last image shows the result for foreground and background. }
+   dashed lines. Finally the last image shows the result for foreground and
+   background \cite{Bagci2016}.}
   \label{fig:graphCutsExplanaition}
 \end{figure}
 
 \section{Resection Planning}
+The 3D models of the liver and the tumor are created. In this section we will
+explain how the resection plane is calculated and displayed in the 3D scene. In
+order to make better planning possible, the nearest point to the tumor center on
+the surface of the liver must first be determined. To find this point, the
+\textit{vtkCellLocator} class is used. This class has a function that can be
+used to find the nearest point on a surface to a given point and the distance
+between them. The found point and distance together with the polygonal data of
+the liver surface, tumor, value for the safety margin, and the desired resection
+shape are then passed into the resection calculator (Figure
+\ref{fig:FourthFlowChart}).
+
+The resection calculators task is to create a resection plane under the given
+conditions and to represent it in the 3D model. It also shows the safety margin taken
+into account as a sphere around the tumor. In addition, also a help line is displayed
+on the liver surface to show where the surgeon could start the resection.
+\begin{figure}[H]
+  \centering
+ \includegraphics[width=0.65\textwidth]{FourthFlowChart}
+  \caption{This flow chart shows the data flow to and from the resection calculator.}
+  \label{fig:FourthFlowChart}
+\end{figure}
+
 \subsection{Cone fitting around tumor}
+In order to keep as much healthy tissue as possible and still remove the tumor
+while maintaining the necessary safety margin around the tumor, the resection
+plane is recalculated for each tumor. Depending on the distance (d) between tumor
+center (C) and liver surface the angle $\alpha$ varies between 10° and 30°. For
+tumors with a distance less than 10 mm the angle is fixed to 30° and for
+distances larger than 30 mm the angle is fixed to 10°. The direction of the cone
+is defined by the vector from the tumor center to the nearest point (P) on the
+surface. After constraining the cone to be tangential to the sphere of the
+safety margin on both sides, the position of the cone apex (A) can be calculated. By
+additiaonally forcing the cutting of the cone tangential to the sphere of the
+safety margin, the length of the cone is limited towards the apex. The base of
+the cone is defined to be 10 mm further away from the tumor than the surface
+point. 
+
+\begin{figure}[H]
+  \centering
+ \includegraphics[width=0.5\textwidth]{ConeFittingGeometry}
+  \caption{The geometrical shape of the resection plane (green) after fitting it
+  around the safety margin (blue). The angle $\alpha$ depends on the distance (d)
+  between the tumor center (C) and the closest point (P) on the liver surface to
+  it. The position of the apex (A) can be calculated after constraining the
+  safety margin to be tangential to the sides of the cone.}
+  \label{fig:ConeFittingGeometry}
+\end{figure}
+
 \section{Visualization for navigation}
 \subsection{Ultrasound overlay}
 The ultrasound image ...
