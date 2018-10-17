@@ -367,12 +367,29 @@ tissue sparing resection of the given tumor.
 \section{Visualization for navigation}
 The visualization of the
 previously created, virtual, assisting, 3D models to the surgeon should make the intervention
-safer or even improve it.
+safer or even improve it. We use a 3D screen to show the 3D scene. This
+makes it easier for the surgeon to move the surgical tools while looking at the
+model.
 Because surgeons need the ultrasound device a lot during liver resections, it
-makes sense to combine the 3D models with the ultrasound image.
+makes sense to combine the 3D models with the ultrasound image. 
 % To help the surgeon navigate during the intervention, t
 \subsection{Ultrasound overlay}
-The ultrasound image ...
+By blending the contours of all visible models (except the liver surface) which cut the image plane,
+with the live ultrasound image, the 3D models become visible on the ultrasound
+image (Figure \ref{fig:cutterExample}). Figure \ref{fig:FifthFlowChart} explains how an image and its
+corresponding pose are used to cut the 3D scene and blend the contours with the
+live image. First, the pose is used to check if the image cuts an object in the
+scene. This is done with the \textit{vtkCutter} class. This class can cut
+through a 3D object with an implicite function. The implicite function of an
+image is a plane, and therefore simple to create by using the image pose. Because the
+cutter can only return a binary mask of where it cuts an object, the cutter
+has to check each object separately. Each time the returned mask from the cutter
+is not empty, contour of the mask is found by using the openCV function
+\textit{findContours}. The found contour is then colored depending on the color
+of the cutted 3D object and added to the mask which will be finally blended with
+the original image. If an object is fully transparent (not visible on the 3D
+screen), then also the countour line will be fully transparent. The described procedure is performed for each new ultrasound image
+during the navigated intervention. 
 \begin{figure}[H]
   \centering
  \includegraphics[width=0.5\textwidth]{FifthFlowChart}
@@ -396,7 +413,24 @@ The ultrasound image ...
   \label{fig:cutterExample}
 \end{figure}
 \subsection{3D model}
+The complete 3D scene consists of the liver surface, approximated tumor sphere
+in the size of the acutal tumor, sphere for the safety margin around the tumor,
+resection plane and the line on the surface indicating the start of the
+resection at the liver surface. Each model in the scene can be faded in or out
+separately. The visibility of each model (except the liver surface) is toggeled on the touchscreen. The
+visibility of a model can be toggled by clicking on the appropriate button on
+the control touch-screen.
+The model colors are the following:
+\begin{itemize}
+  \item Red $\rightarrow$ Liver surface
+  \item Yellow $\rightarrow$ Tumor sphere
+  \item Blue $\rightarrow$ Safety margin sphere
+  \item Green $\rightarrow$ Resection plane
+\end{itemize}
+The liver surface, resection plane and the safety margin sphere are trasparent
+such that one can see trough them.
 \section{UI Concept}
+
 %%% Local Variables:
 %%% TeX-master: "MscThesis"
 %%% End:
