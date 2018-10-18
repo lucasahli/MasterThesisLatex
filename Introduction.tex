@@ -13,6 +13,9 @@
 
 \chapter{Introduction}
 \section{Motivation} 
+\textcolor{red}{start with the clinical problem that you want to solve}
+
+\textcolor{red}{why do we need navigation then, and why do we need yet another method?}
 The goal of computer assisted surgeries is to reduce the time used to do the
 surgery and to also improve the surgical result for the patient. In the case of
 surgeries involving liver resections, navigation systems are rarely used because
@@ -33,7 +36,7 @@ different functions. It produces biochemicals necessary for digestion,
 synthesizes proteins and detoxifies various metabolites. A human liver wheighs
 normally around 1.5 kg, is the heaviest internal organ and the largest gland
 of the human body. Two large blood vessels are connected to the liver: the
-portal vein and the hepatic artery. Both of them subdivide into small
+portal vein and the hepatic vein. Both of them subdivide into small
 capillaries called \textit{liver sinusoids} and then lead to the functional
 units of the liver known as \textit{lobules}. To refer to the different parts of
 the liver, it is subdivided into eight subsegments. Each segment has its own
@@ -49,11 +52,14 @@ vascular inflow and outflow.
 \end{figure}
 
 \subsection{Liver Cancer}
+\textcolor{green}{Liver metastatis are more common in US/Europe, in asia it's the other way around for example}
+
 Liver cancer is cancer that starts in the liver. If the cancer has spread from
 elsewhere to the liver, then it is known as liver metastasis. Liver metastasis
-are about 20 times more common than primary tumors. One of the reasons for that
+are about 20 times more common in the United States and in Europe than primary tumors. One of the reasons for that
 is the rich blood supply of the liver which helps the tumors to grow
-\cite{mcguire2016world}. Liver cancer patients often have chronic liver diseases
+\cite{mcguire2016world}. In asia it's the other way round, more people suffer
+from liver cancer than from liver metastases. Liver cancer patients often have chronic liver diseases
 such as cirrhosis, problems of alcohol abuse, and viral hepatitis (B or C)
 \cite{galun2015hepatocellular}. The gold standard to treat liver cancer are
 surgical resections \cite{lencioni2012local}. The liver tissue can easily regrow, given that after resection there is
@@ -62,12 +68,43 @@ one can treat liver tumors by local ablation. Both variants treat the tumors
 with a safety margin of 10 mm. This safety margin ensures that all tumor cells
 are destroyed and to prevent further spread of cancer cells \cite{mahnken2009ct}.
 \section{Liver Resections} 
+\textcolor{green}{explain liver resections a bit more in detail, also what instruments are used and what to do with a blood vessel}
 Hepatectomy is the surgical resection (removal of all or part) of the liver.
 Liver resections are considered major surgeries and are done under general
-anesthesia. Most hepatectomies are done laparoscopicly. However for complicated
+anesthesia. If no other internal organs of the body are affected and the liver
+is not cirrhotic, then 70\% to 80\% of the total liver volume can be removed in a
+surgical resection. For patients with cirrhotic livers, not more than 50\% of
+the total liver volume should be removed \cite{pianka2011liver}. Liver tissue is
+cut using instruments like the BiClamp® vessel-sealing device (Figure \ref{fig:BiClampExplained}). Such devices can
+simultaneously transect liver parenchyma and seal vessels with diameters smaller
+than 7 mm \cite{zhao2017biclamp}. For larger vessels, resorbable clamps are used
+to prevent undesired bloodflow out of the liver.
+\begin{figure}[H]
+  \centering
+  \minipage{0.32\linewidth}
+  \includegraphics[width=\linewidth]{BiClamp1}
+  \endminipage
+  \hfill
+  \minipage{0.32\linewidth}
+  \includegraphics[width=\linewidth]{BiClamp2}
+  \endminipage
+  \hfill
+  \minipage{0.32\linewidth}
+  \includegraphics[width=\linewidth]{BiClamp3}
+  \endminipage
+  \hfill 
+ \caption{A vessel sealing device is used to transect liver parenchyma and split
+   blood vessels then seal them so that no blood is lost. From left to right:
+   First, the vessel is pressed together and then the tissue coagulated using a bipolar
+   electrosurgical current. In some cases this is done twice. Finally the tissue
+   is separated mechanically at the center of the visible coagulation area \cite{biClampPdfWithImages}. }
+  \label{fig:BiClampExplained}
+\end{figure}
+
+Most hepatectomies are done laparoscopicly. However for complicated
 cases also open surgeries are done \cite{cherqui2000laparoscopic}. Two
 resection techniques can be separated. Anatomical or parenchymal-sparing
-resections. This work will concentrate on the latter technique.
+resections (Figure \ref{fig:resectionsPlanning}). This work will concentrate on the latter technique. 
 \begin{figure}[H]
   \centering
  \includegraphics[width=\textwidth]{resectionsPlanning}
@@ -79,7 +116,25 @@ parenchymal-sparing resection plan would look like \cite{alvarez2016parenchymal}
   \label{fig:resectionsPlanning}
 \end{figure}
 
+
 \subsection{Parenchymal-sparing liver surgeries}
+Resection is the established gold-standard treatment of colorectal liver
+metastases. The surgical treatment of colorectal liver metastases has changed with the expansion of the
+parenchymal-sparing liver resection technique. This technique involves preserving healthy
+functional liver parenchyma by performing a wide range of liver resections. In
+order to perform the appropriate type of resection, the site and
+relationships of the tumor with glissonian pedicles or hepatic veins have to be
+known.
+For that reason, it is obvious that only the heavy use of intraoperative liver
+ultrasound makes it possible to perform parenchymal-sparing liver resections.
+This can be also used with the laparoscopic approach. The method is backed by technical, oncological,
+and pathological arguments.
+This approach has multiple benefits: decreases postoperative mortality and
+morbidity rates, while preserving the function of the liver. In turn, the risk
+of liver dysfunction is reduced and the possibility of re-resection in case of
+reccurence increases. Overall, parenchymal-sparing liver surgeries offer
+similar survival results \cite{Ferrero2017}.
+
 \cite{alvarez2016parenchymal}
 \section{Objectives} 
 The objectives of this Master's thesis are:

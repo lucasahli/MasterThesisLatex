@@ -18,6 +18,7 @@ actual state of the surgery, the use of the two will be different.
 \end{figure}
 
 \section{Surface Reconstruction}
+\textcolor{red}{An image pose has to take two hurdles. sounds strange..}
 While the surgeon is scanning the surface, the software in the background
 filters out unusable positions. An image pose pair has to take two hurdles to
 become accepted in the group of surface points. The image has to prove that it
@@ -68,7 +69,9 @@ maximum, variance, skewness and kurtosis of the pixel values. All features are c
 on the upper half of the image. For training, a set of 2'311 images (1'056 with contact, 1'255
 without contact) were used. The training data was composed of images from a phantom
 (88\%) and images from previous navigated liver surgeries (12\%). All computations were
-performed using the SciPy software package. When the image is classified as ``surface contact'', then the position of the pose is stored
+performed using the openCV software package.
+
+When the image is classified as ``surface contact'', then the position of the pose is stored
 into the buffer. The buffer has a capacity of 10 positions. When
 the addition of the actual pose leads to a full buffer, the buffer is
 tested for outliers.
@@ -369,7 +372,7 @@ The visualization of the
 previously created, virtual, assisting, 3D models to the surgeon should make the intervention
 safer or even improve it. We use a 3D screen to show the 3D scene. This
 makes it easier for the surgeon to move the surgical tools while looking at the
-model.
+3D scene.
 Because surgeons need the ultrasound device a lot during liver resections, it
 makes sense to combine the 3D models with the ultrasound image. 
 % To help the surgeon navigate during the intervention, t
@@ -413,22 +416,22 @@ during the navigated intervention.
   \label{fig:cutterExample}
 \end{figure}
 \subsection{3D model}
-The complete 3D scene consists of the liver surface, approximated tumor sphere
-in the size of the acutal tumor, sphere for the safety margin around the tumor,
-resection plane and the line on the surface indicating the start of the
-resection at the liver surface. Each model in the scene can be faded in or out
-separately. The visibility of each model (except the liver surface) is toggeled on the touchscreen. The
-visibility of a model can be toggled by clicking on the appropriate button on
-the control touch-screen.
-The model colors are the following:
+The complete 3D scene is visualized with the VTK framework. The 3D scene
+contains the following differently colored models:
 \begin{itemize}
   \item Red $\rightarrow$ Liver surface
   \item Yellow $\rightarrow$ Tumor sphere
   \item Blue $\rightarrow$ Safety margin sphere
   \item Green $\rightarrow$ Resection plane
+  \item White $\rightarrow$ Line indicating the resection on the liver surface
 \end{itemize}
-The liver surface, resection plane and the safety margin sphere are trasparent
-such that one can see trough them.
+Each model (except the liver surface) in the scene can be faded in or out
+separately by toggling the visibilities on the control touch-screen.
+The liver surface, resection plane and the safety margin sphere are translucent
+such that surgeons can see the surgical site inside the liver intraoperatively.
+
+% Before starting up the application one can
+% configure if the 3D scene is displayed on a 3D or 2D screen. 
 \section{UI Concept}
 
 %%% Local Variables:

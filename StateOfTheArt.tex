@@ -1,6 +1,7 @@
 \chapter{State of the art}
 
 \section{Intraoperative ultrasound}
+\textcolor{red}{Start with why US is used, then describe how it works and the limitations. from there you should have a nice transition to navigation}
 Ultrasound imaging works by the \textit{pulse-echo} principle. A short
 ultrasound-pulse is emitted from a transducer. Then the soundwaves get
 transmitted and reflected differently by different tissues. The reflected
@@ -31,6 +32,7 @@ ultrasound is an important and established instrument in liver surgeries.
 \end{figure}
 
 \section{Navigation for liver resections}
+\textcolor{red}{first, why is navigation needed, then how does it generally work 1) preoperative model or surgical plan 2) tracking 3) registration 4) navigation visualization etc. then challenges especially in liver surgery and limitations}
 The actual intervention in computer assisted surgeries (CAS) is defined as
 surgical navigation. For navigated surgeries special instruments are used. These
 instruments are tracked by the naviagation system. The orientation and position
@@ -77,6 +79,8 @@ determines the position and orientation of the tracked instruments based on the
 information it receives from those markers \cite{noauthor_polaris_nodate}.  
 
 \section{Surface reconstruction of unorganized points}
+\textcolor{red}{First, collecting the sample ... These terms should match the titles below
+Both other chapters, explain first what the process is for, then what methods are available}
 A surface reconstruction's goal is to create a surface from sampling points. Two
 main steps need to be processed. First, collecting the sample points. Second,
 apply a reconstruction algorithm to the sampled points.
@@ -92,6 +96,7 @@ They used stereo laparoscopic cameras to sample the surface.
 The resulting sampling points lie on or near an unknown surface. A
 reconstruction algorithm has now to reconstruct the surface from these points.
 \subsection{Reconstruction algorithms}
+\textcolor{red}{ switch explicit and implicit, so you have the same order as in the figure}
 Again, a lot of reconstruction algorithms exist \cite{lim2014surface}, but not
 all of them are made to reconstruct from unorganized points. This means
 that the point orders, orientations, connections and the topological type of the
