@@ -1,26 +1,13 @@
 \chapter{State of the art}
 
 \section{Intraoperative ultrasound}
-\textcolor{red}{Start with why US is used, then describe how it works and the limitations. from there you should have a nice transition to navigation}
-Ultrasound imaging works by the \textit{pulse-echo} principle. A short
-ultrasound-pulse is emitted from a transducer. Then the soundwaves get
-transmitted and reflected differently by different tissues. The reflected
-soundwaves travel back into the transducer and get converted into an electrical
-signal. After post-processing these signals become ultrasound images. Basically
-the ultrasound measures the mechanical properties of the tissue. The tissues
-have different acoustic impedance, which is the product of tissue density and
-ultrasound speed in travelling through the tissue. The resolution of the
-ultrasound images depends on the frequency of the ultrasound waves. High
-frequencies lead to high resolutions but low depth into the tissue because the
-absorption of the sound energy increases with frequency too. Therefore the
-useability to see deep structures is limited \cite{torzilli2014ultrasound}. In
-liver surgeries the ultrasound is used for intraoperative planning and
-navigation inside the liver. Figure \ref{fig:liverUS} shows an example of an
+\textcolor{green}{Start with why US is used, then describe how it works and the limitations. from there you should have a nice transition to navigation}
+In
+liver surgeries an intraoperative ultrasound device is used for intraoperative planning and
+navigation inside the liver. It is used to locate tumors that are not
+visible on the liver surface and to estimate their sizes from the ultrasound image. Figure \ref{fig:liverUS} shows an example of an
 ultrasound image of the liver and its corresponding position in the 3D liver
-model. The surgeon can find the tumors inside the liver by using the ultrasound.
-Registration methods based on 3D ultrasound reconstructed liver vessels also
-exist but are not used in practice a lot yet \cite{lange2003vessel}. Therefore
-ultrasound is an important and established instrument in liver surgeries.
+model.
 
 \begin{figure}[H]
   \centering
@@ -30,6 +17,31 @@ ultrasound is an important and established instrument in liver surgeries.
    to segments 5 and 8 (P5-8) and the portal branch to segments 6 and 7 (P6-7) \cite{torzilli2014ultrasound}}
   \label{fig:liverUS}
 \end{figure}
+
+Ultrasound imaging works by the \textit{pulse-echo} principle. A short
+ultrasound pulse is emitted from a transducer. The sound waves get
+transmitted and reflected differently by different tissues. The reflected
+ waves travel back into the transducer and are converted into an electrical
+signal. After post-processing these signals become ultrasound images. 
+The ultrasound measures the mechanical properties of the tissue. The tissues
+have different acoustic impedance, which is the product of tissue density and
+ultrasound speed in travelling through the tissue. The resolution of the
+ultrasound images depends on the frequency of the ultrasonic waves. High
+frequencies lead to higher resolution but lower penetration depth into the tissue because the
+absorption of the sound energy increases with frequency too. Therefore the
+useability to see deep structures is limited \cite{torzilli2014ultrasound}. 
+
+In liver surgeries ultrasound is an important and established instrument.
+Intraoperatively, the ultrasound is used on the liver surface directly,
+therefore the penetration depth of the
+ultrasound is optimal to represent the inner structures of the liver.
+The registration methods based on 3D ultrasound reconstructed liver vessels 
+exist but are not used in practice frequently \cite{lange2003vessel}. Ultrasound
+is not harmful to health and therefore, can
+be used as often as desired to navigate during a surgery.
+% it is  
+% Intraoperatively surgeons use ultrasound to localize the tumor as it gives
+% advantages of reduced surgical time, complexity and radiation dosage.
 
 \section{Navigation for liver resections}
 \textcolor{red}{first, why is navigation needed, then how does it generally work 1) preoperative model or surgical plan 2) tracking 3) registration 4) navigation visualization etc. then challenges especially in liver surgery and limitations}
