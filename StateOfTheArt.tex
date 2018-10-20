@@ -35,7 +35,7 @@ In liver surgeries ultrasound is an important and established instrument.
 Intraoperatively, the ultrasound is used on the liver surface directly,
 therefore the penetration depth of the
 ultrasound is optimal to represent the inner structures of the liver.
-The registration methods based on 3D ultrasound reconstructed liver vessels 
+Registration methods based on 3D ultrasound reconstructed liver vessels 
 exist but are not used in practice frequently \cite{lange2003vessel}. Ultrasound
 is not harmful to health and therefore, can
 be used as often as desired to navigate during a surgery.
@@ -44,29 +44,44 @@ be used as often as desired to navigate during a surgery.
 % advantages of reduced surgical time, complexity and radiation dosage.
 
 \section{Navigation for liver resections}
-\textcolor{red}{first, why is navigation needed, then how does it generally work 1) preoperative model or surgical plan 2) tracking 3) registration 4) navigation visualization etc. then challenges especially in liver surgery and limitations}
-The actual intervention in computer assisted surgeries (CAS) is defined as
-surgical navigation. For navigated surgeries special instruments are used. These
-instruments are tracked by the naviagation system. The orientation and position
+\textcolor{green}{first, why is navigation needed, then how does it generally work
+  1) preoperative model or surgical plan 2) tracking 3) registration 4)
+  navigation visualization etc. then challenges especially in liver surgery and limitations}
+It is a difficult task for inexperienced surgeons to orientate themselves within the liver during an operation.
+From the outside of the liver it is not visible where the blood vessels are which they do not want to hurt.
+Navigation can help surgeons to orient themselves precisely in organs during
+operations.
+
+% The actual intervention in computer assisted surgeries (CAS) is defined as
+% surgical navigation.
+A navigated operation differs in a few points from a non-navigated operation.
+Because every patient's liver is different, a new 3D model of the liver has to
+be created before surgery. This models are created from pre-operative 3D
+computer tomography (CT) scan of the liver. Then, using this model, a surgical plan is made.
+In contrast to a regular operation, a navigation system is located in the
+operating theatre and the surgical instruments can be tracked by it. Therefore special instruments are used. These
+instruments have the ability to be tracked by the naviagation system. Depending
+on the tracking technology used by the navigation system, the tools are different.
+In order to also track the liver, the created model is registered to the anatomy
+of the patient. Finally the orientation and position
 of the instruments in relation to the patient's anatomy is visualized on a
-monitor in the operating room. The surgeon can then see what he does on the
+monitor in the operating room. The surgeon can see what he does on the
 monitor and uses the system to navigate the location and position of its
 instruments. This is specialy then useful when the tip of the instrument is not
-actually visible for the suergeon. 
-In liver surgeries, the navigation is mostly done by first registering the patient to a pre-operative 3D
-computer tomography (CT) scan of the liver during the surgery. All surgical
-instruments have trackable markers attached to them and a tracking camera sees
-these markers and can differentiate the different instruments from their attached
-markers. The achieved
+actually visible for the suergeon.
+
+The achieved
 navigation accuracy with such a system was 4.5 mm $\pm$3.6 mm averaged over nine surgeries \cite{peterhans2011navigation}.
 Current research tries to compensate for deformations of the liver after the CT
 scan to the actual shape of the liver \cite{clements2017deformation}
 \cite{clements2015validation}. 
 \subsection{Creation of preoperative 3D-models}
-
-
-\cite{numminen2005preoperative} time consuming and method to create 3d-model
-from CT
+Several steps are necessary to create a preoperative model. First the 
+CT scan is done. This leads to representations of the liver on several 2D images parallel
+to each other, filling a square volume with voxels. From this data the liver and
+its inner structures are manually segmented and merged to a 3D model. This is very
+time consuming and therefore expensive \cite{numminen2005preoperative}.
+Nevertheless the resulting models are very detailed and accurate.    
 
 \subsection{Registration methods}
 Different registration methods exist. Discrete landmarks, surface scans and
