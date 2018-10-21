@@ -44,6 +44,7 @@ be used as often as desired to navigate during a surgery.
 % advantages of reduced surgical time, complexity and radiation dosage.
 
 \section{Navigation for liver resections}
+\label{sec:navigationForLiverResections}
 \textcolor{green}{first, why is navigation needed, then how does it generally work
   1) preoperative model or surgical plan 2) tracking 3) registration 4)
   navigation visualization etc. then challenges especially in liver surgery and limitations}
@@ -79,16 +80,48 @@ scan to the actual shape of the liver \cite{clements2017deformation}
 Several steps are necessary to create a preoperative model. First the 
 CT scan is done. This leads to representations of the liver on several 2D images parallel
 to each other, filling a square volume with voxels. From this data the liver and
-its inner structures are manually segmented and merged to a 3D model. This is very
+its inner structures are manually segmented and merged to a 3D model (Figure \ref{fig:MeVisExample}). This is very
 time consuming and therefore expensive \cite{numminen2005preoperative}.
-Nevertheless the resulting models are very detailed and accurate.    
+Nevertheless the resulting models are very detailed and accurate.
+\begin{figure}[H]
+  \centering
+ \includegraphics[width=0.6\textwidth]{MeVisExample}
+ \caption{Example of a preoperative 3D model created by MeVis}%DK patient
+  \label{fig:MeVisExample}
+\end{figure}
 
 \subsection{Registration methods}
-Different registration methods exist. Discrete landmarks, surface scans and
+Patient registration is a concept to correlate the reference coordinate system
+of a virtual 3D data set with that of a patient. First, the 3D data set has to
+be gathered. This is often done by CT or MRI scan of the patients anatomy to be
+operated on. Secondly, finding of the transformation between the patient's
+reference coordinate system and the virtual data set. During the surgery the patient is similarly
+tracked as the instruments (see section \ref{sec:navigationForLiverResections}).
+In this way, the patient has his own coordinate system. From here many different
+methods exist to align the virtal data to the real anatomy.
+Discrete landmarks, surface scans and
 volumetric sonography scans are just a few of the approaches that can be
-used to achieve precise alignment of the preoperative image data with the
-surgical site \cite{banz2016intraoperative}.
+used to achieve precise alignment of the data with the
+surgical site \cite{banz2016intraoperative}. 
 
+\subsubsection{Surface registration}
+\textcolor{red}{Start with why Surface registration is used, then describe how it works and the limitations. from there you should have a nice transition to navigation}
+
+Surface registration is registration based on surfaces. It is used and studied
+for several years in all kinds of fields \cite{ramos2015review}. Especially in
+the field of medical technology, a lot of research is being done in the
+direction of contactless registration. Intraoperatively, different camera technologies which lead
+to depth images are used to sample the surface of an organ. Often used imaging systems are stereo cameras
+\cite{furukawa2010accurate}, structured light \cite{salvi2004pattern} and
+laser range scanners \cite{cash2003incorporation}. From these intraoperatively
+created data sets, surfaces are reconstructed and then used for registration. To
+find the mapping between the surfaces, mostly different variants of the iterative
+closest point (ICP) \cite{besl1992method} algorithm are used. 
+
+These surface based methods are limited to structures on the outer part of the
+organ because. 
+Researchers try to compensate for intraoperative soft-tissue deformations
+\cite{cash2005compensating}\cite{dagon2008real}.
 \subsection{Tracking modalities}
 To track surgical instruments and patient's anatomy (define the position and
 orientation in real time) during naviagated surgery a tracking system is needed.
@@ -105,25 +138,36 @@ on the position sensor (only for passive markers). The position sensor
 determines the position and orientation of the tracked instruments based on the
 information it receives from those markers \cite{noauthor_polaris_nodate}.  
 
-\section{Surface reconstruction of unorganized points}
-\textcolor{red}{First, collecting the sample ... These terms should match the titles below
+\section{Surface reconstruction from unorganized points}
+\textcolor{green}{First, collecting the sample ... These terms should match the titles below
 Both other chapters, explain first what the process is for, then what methods are available}
-A surface reconstruction's goal is to create a surface from sampling points. Two
-main steps need to be processed. First, collecting the sample points. Second,
-apply a reconstruction algorithm to the sampled points.
+A surface reconstruction's goal is to create a surface from sampled points \cite{berger2017survey}. Two
+main steps need to be processed. First, acquisition of the data to create a sample. Secondly,
+apply a reconstruction algorithm on the sampled points.
 \subsection{Data acquisition}
-There exist different methods of collecting surface points
+\textcolor{green}{what the process is for, then what methods are available}
+In order to reconstruct a surface it is necessary to have some information about
+it. Therefore a set of points which lie on or near the unknown surface is acquired first. A
+reconstruction algorithm has then to reconstruct the surface from these points.
+
+There exist different methods to collect surface points
 \cite{franca20053d}\cite{levoy2000digital}\cite{cui20113d}\cite{chu2002infrared}\cite{dou20153d}.
 Optical (non-contact scan) scans are the most popular ones. Specialy laser based
 scanners can scan very fast and with a precision in the order of micrometers. Also contact scans exist
 \cite{pai2001scanning}. Contact scans can also be very precise (in the order of
 micrometers).
-Only a few articles were published in the field of liver surface scanning \cite{maier2014comparative} \cite{thompson2015accuracy}. 
+
+In the field of liver surface scanning only a few articles were published  \cite{maier2014comparative} \cite{thompson2015accuracy}. 
 They used stereo laparoscopic cameras to sample the surface.
-The resulting sampling points lie on or near an unknown surface. A
-reconstruction algorithm has now to reconstruct the surface from these points.
 \subsection{Reconstruction algorithms}
-\textcolor{red}{ switch explicit and implicit, so you have the same order as in the figure}
+\textcolor{green}{ switch explicit and implicit, so you have the same order as in the figure}
+
+\textcolor{green}{what the process is for, then what methods are available}
+The problem
+surface reconstruction aims to solve is the representation of a surface in 
+digital form, from error containing data that has first been scanned in the
+real world.
+
 Again, a lot of reconstruction algorithms exist \cite{lim2014surface}, but not
 all of them are made to reconstruct from unorganized points. This means
 that the point orders, orientations, connections and the topological type of the
@@ -144,10 +188,6 @@ volume-based and explicit mesh-based reconstructions.
    reconstruction \cite{stanfordPP}}
   \label{fig:ImplicitVSExplicit}
 \end{figure}
-\subsubsection{Explicit mesh-based reconstrction}
-Explicit mesh-based reconstrction methods form a triangular mesh directly from
-the unorganized points. These mesh-based reconstructions are precise but they
-have problems with noise, complex shapes and especially holes in data.
 \subsubsection{Implicit volume-based reconstrction}
 Implicit volume-based reconstruction techniques construct an implicit
 volume-function from the input points. From the iso-surface of the
@@ -155,11 +195,15 @@ volume-function a restored surface can then be optained. For these methods it is
 not a problem if the surface topology is complex. But most of these methods
 suffer from oversmoothing the data and the need of accurate directions of normal
 vectors in addition to the unorganized points. 
+\subsubsection{Explicit mesh-based reconstrction}
+Explicit mesh-based reconstrction methods form a triangular mesh directly from
+the unorganized points. These mesh-based reconstructions are precise but they
+have problems with noise, complex shapes and especially holes in data.
 
 
-\cite{kazhdan2005reconstruction} oriented point set hornung2006robust
-\cite{hornung2006robust} non uniformly sampled point clouds without normal information
-\cite{yu1999surface} NN to reconstruct from unorganized points
+% \cite{kazhdan2005reconstruction} oriented point set hornung2006robust
+% \cite{hornung2006robust} non uniformly sampled point clouds without normal information
+% \cite{yu1999surface} NN to reconstruct from unorganized points
 
 
 
