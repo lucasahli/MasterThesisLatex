@@ -13,12 +13,36 @@ The hardware used with this system consists of:
 \end{itemize}
 The software in this system consists of:
 \begin{itemize}
-  \item a sampling method to collect points on the liver-surface
-  \item a reconstruction method to reconstruct the surface from the sampled points
-  \item a segmentation method to segment the tumors on the ultrasound images
-  \item a planning method to plan the resection of the liver
-  \item a navigation mode used to navigate during the removal of the tumor
+  \item a sampling method 
+  \item a reconstruction method 
+  \item a segmentation method 
+  \item a planning method 
+  \item a navigation 
 \end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}[H]{c c c c c c}
+    \multicolumn{2}{c}{\thead{Sampling method \\ to collect points on \\ the liver-surface}} & \multicolumn{2}{c}{\thead{Reconstruction method \\ to reconstruct the surface \\ from the sampled points}} & \multicolumn{2}{c}{\thead{Segmentation method \\ to segment the tumors on \\ the ultrasound images}}
+    \\
+    \multicolumn{2}{c}{\addheight{\includegraphics[width=0.3\linewidth]{samplingMethod}}} &
+    \multicolumn{2}{c}{\addheight{\includegraphics[width=0.3\linewidth]{reconstructionMethod}}} &
+    \multicolumn{2}{c}{\addheight{\includegraphics[width=0.3\linewidth]{segmentationMethod}}} 
+    \\
+    \\
+    \\
+    \multicolumn{3}{c}{\thead{Planning method \\ to plan the resection \\ of the liver}} & \multicolumn{3}{c}{\thead{Navigation mode used \\ to navigate during the \\ removal of the tumor}} 
+    \\
+    \multicolumn{3}{c}{\centering \addheight{\includegraphics[width=0.48\linewidth]{planningMethod}}} &
+    \multicolumn{3}{c}{\addheight{\includegraphics[width=0.48\linewidth]{navigationMode}}} 
+    \\
+    & & & & &
+    % \addheight{\includegraphics[width=0.3\linewidth]{mes08_pointgrid.png}}
+    \\
+  \end{tabular}
+  \caption{Software components}
+  \label{fig:softwareComponents}
+\end{figure}
 \section{Functionalities}
 The three main functionalities of the developed concept will be presented in
 this chapter. These functionalities were specifically developed for this project.
@@ -29,6 +53,13 @@ checked for contact with the liver. If the ultrasound passes the check, that
 means the ultrasound image looks like an ultrasound image that can only arise
 when the ultrasound probe lies on the liver surface, then the position of this
 image can be used.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\textwidth]{Assembly}
+  \caption{The different coordinate systems}
+  \label{fig:Assembly}
+\end{figure}
 
 \textcolor{red}{In order to use ... too complicated. Put an image for that and name the transformations.}
 In order to use the sampled position corresponding to an image, this

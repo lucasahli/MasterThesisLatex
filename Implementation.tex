@@ -18,6 +18,72 @@ actual state of the surgery, the use of the two will be different.
 \end{figure}
 
 \section{Surface Reconstruction}
+\section{Surface reconstruction from unorganized points}
+\textcolor{green}{First, collecting the sample ... These terms should match the titles below
+Both other chapters, explain first what the process is for, then what methods are available}
+A surface reconstruction's goal is to create a surface from sampled points \cite{berger2017survey}. Two
+main steps need to be processed. First, acquisition of the data to create a sample. Secondly,
+apply a reconstruction algorithm on the sampled points.
+\subsection{Data acquisition}
+\textcolor{green}{what the process is for, then what methods are available}
+In order to reconstruct a surface it is necessary to have some information about
+it. Therefore a set of points which lie on or near the unknown surface is acquired first. A
+reconstruction algorithm has then to reconstruct the surface from these points.
+
+There exist different methods to collect surface points
+\cite{franca20053d}\cite{levoy2000digital}\cite{cui20113d}\cite{chu2002infrared}\cite{dou20153d}.
+Optical (non-contact scan) scans are the most popular ones. Specialy laser based
+scanners can scan very fast and with a precision in the order of micrometers. Also contact scans exist
+\cite{pai2001scanning}. Contact scans can also be very precise (in the order of
+micrometers).
+
+In the field of liver surface scanning only a few articles were published  \cite{maier2014comparative} \cite{thompson2015accuracy}. 
+They used stereo laparoscopic cameras to sample the surface.
+\subsection{Reconstruction algorithms}
+\textcolor{green}{ switch explicit and implicit, so you have the same order as in the figure}
+
+\textcolor{green}{what the process is for, then what methods are available}
+The problem
+surface reconstruction aims to solve is the representation of a surface in 
+digital form, from error containing data that has first been scanned in the
+real world.
+
+Again, a lot of reconstruction algorithms exist \cite{lim2014surface}, but not
+all of them are made to reconstruct from unorganized points. This means
+that the point orders, orientations, connections and the topological type of the
+surface is not known a priori. Therefore it is necessary that the algorithm does not assume any structure
+on the data points \cite{hornung2006robust} \cite{yu1999surface}. The orientations, connections and the topological
+type must be inferred from the points. This is a major difficulty of the general surface
+reconstruction problem \cite{hoppe1992surface}. In the past few decades, many
+algorithms that can solve this problem have been published. Nevertheless it is
+still a challanging task that is part of current research \cite{li2018surface}.
+The available reconstrction types can be classified into two groups: implicit
+volume-based and explicit mesh-based reconstructions.
+\begin{figure}[H]
+  \centering
+ \includegraphics[width=\textwidth]{ImplicitVSExplicit}
+ \caption{The difference between implicit and explicit surface reconstructions.
+   On the left side is the pointcloud used as input. In the middle the result of an
+   implicit reconstruction. On the right side the result of an explicit
+   reconstruction \cite{stanfordPP}}
+  \label{fig:ImplicitVSExplicit}
+\end{figure}
+\subsubsection{Implicit volume-based reconstrction}
+Implicit volume-based reconstruction techniques construct an implicit
+volume-function from the input points. From the iso-surface of the
+volume-function a restored surface can then be optained. For these methods it is
+not a problem if the surface topology is complex. But most of these methods
+suffer from oversmoothing the data and the need of accurate directions of normal
+vectors in addition to the unorganized points. 
+\subsubsection{Explicit mesh-based reconstrction}
+Explicit mesh-based reconstrction methods form a triangular mesh directly from
+the unorganized points. These mesh-based reconstructions are precise but they
+have problems with noise, complex shapes and especially holes in data.
+
+
+% \cite{kazhdan2005reconstruction} oriented point set hornung2006robust
+% \cite{hornung2006robust} non uniformly sampled point clouds without normal information
+% \cite{yu1999surface} NN to reconstruct from unorganized points
 \textcolor{green}{An image pose has to take two hurdles. sounds strange..}
 While the surgeon is scanning the surface, the software in the background
 filters out unusable positions. An image pose pair has to pass two tests to

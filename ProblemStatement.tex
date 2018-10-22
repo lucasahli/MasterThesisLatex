@@ -1,16 +1,60 @@
 \chapter{Problem Statement}
-\textcolor{red}{ you're building a very specific application for non-anatomical resections. the bullet points should not be the requirements of your softwre but rather of your thesis}
-To make computer assisted navigation in liver resection surgeries more
-accessible to liver surgeons, a new concept has to be developed in order to do
-some first testings.
-Specifically, the method should fulfill the following:
+\textcolor{green}{start with the clinical problem that you want to solve}
+\textcolor{green}{why do we need navigation then, and why do we need yet another method?}
+Liver cancer is the fifth deadliest cancer in the world \cite{bray2018global}.
+Primary hepatocellular carcinoma (HCC) and metastatic colorectal hepatic
+metastasis (CHRM) are the most common hepatic tumours encountered \cite{north2014microwave}. Worldwide
+there are 600'000 liver cancer deaths and 700'000 new cases each year.
+The 5-year survival rate is very low, smaller than 20\% for these
+patients. In Switzerland, around 700 people are diagnosed every year with
+primary liver cancer. Still, more frequent than primary liver tumours are
+secondary ones; those that spread as metastases from other organs such as stomach, colon,
+lungs and breast. 
+
+The only way to curatively treat patients with liver tumors is by surgery. Three types of surgery
+are performed regularly on patients:
 \begin{itemize}
-  \item The software should guide the surgeon through the surgical procedure.
-  \item A 3D-model of the liver should be created during the surgery.
-  \item The planning for the resection of the tumor should be done
-    intraoperatively on the created 3D-model.
-  \item The method should be ready for testings in the OR.
+  \item Anatomical resections
+  \item Parenchymal-sparing (non-anatomical) resections
+  \item Tumor ablations 
 \end{itemize}
+The goal of these treatments is the destruction or removal of the tumor. If the
+tumor is not visible from the outside of the liver, then it is difficult for the
+surgeons to tell where exactly it is. Therefore computer assisted navigation
+could help to locate and visualize it intraoperatively.
+In the case of liver resection surgeries, navigation systems are rarely employed
+since they do not provide enough benefits to justify the additional time needed
+to set them up \cite{beller2007image}. These two problems have several origins.
+First, there is an accuracy problem for registration based approaches. The
+registration error and the deformations of the liver during the surgery
+\cite{clements2017deformation} or between the preoperative scan and the surgery
+lead to errors. Secondly, the time needed to register the patient's anatomy to the
+preoperative 3D-model. These methods need sometimes multiple attempts to complete
+a sufficiently accurate registration. Moreover preoperative 3D-models are time
+consuming and therefore expensive to generate.
+
+In conclusion we aim to develop a new navigation concept based on intraoperative
+imaging to make computer assisted navigation in liver resection surgeries more
+accessible to liver surgeons. 
+% This concept should not need a preoperative scan and consequently
+% not need a registration.
+% That way we would also avoid the preoperative 3D-model. 
+
+
+
+
+% \textcolor{red}{ you're building a very specific application for non-anatomical resections. the bullet points should not be the requirements of your softwre but rather of your thesis}
+% To make computer assisted navigation in liver resection surgeries more
+% accessible to liver surgeons, a new concept has to be developed in order to do
+% some first testings.
+% Specifically, the method should fulfill the following:
+% \begin{itemize}
+%   \item The software should guide the surgeon through the surgical procedure.
+%   \item A 3D-model of the liver should be created during the surgery.
+%   \item The planning for the resection of the tumor should be done
+%     intraoperatively on the created 3D-model.
+%   \item The method should be ready for testings in the OR.
+% \end{itemize}
 \endinput
 %%% Local Variables:
 %%% TeX-master: "MscThesis"

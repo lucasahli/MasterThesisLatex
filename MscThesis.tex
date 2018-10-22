@@ -46,12 +46,16 @@
 % \usepackage{subcaption} % provides a means of using facilities analagous to those of the caption package, when writing captions for subfigures and the like
 \usepackage{svg} % to include svg figures with \includesvg{file.svg}
 \usepackage{gensymb} % to use \degree for the ° symbol
+\usepackage{multirow} % Create tabular cells spanning multiple rows
+\usepackage{booktabs} % The package enhances the quality of tables in LATEX, providing extra commands
+\usepackage{makecell} % 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Luca Sahli's commands
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand*{\addheight}[2][.5ex]{%
   \raisebox{0pt}[\dimexpr\height+(#1)\relax]{#2}%
 }
+% \newcommand*\mc[1]{\multicolumn{3}{c}{#1}}
 % *******************************************************************
 % *******************************************************************
 
@@ -116,8 +120,8 @@
 % Main text body
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \include{Introduction}
-\include{StateOfTheArt}
 \include{ProblemStatement}
+\include{StateOfTheArt}
 \include{Concept}
 \include{Implementation}
 \include{Experiments}
