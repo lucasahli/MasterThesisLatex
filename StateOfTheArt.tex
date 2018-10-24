@@ -1,4 +1,202 @@
 \chapter{State of the art}
+This section presents approaches to tackle the problems of registraition during
+liver surgeries and the challanges when creating 3D models of the liver
+intraoperatively. Advantages and disadvatages of the different approaches are
+presented and discussed.
+\section{Ultrasound based registration of the liver}
+
+
+% \subsection{Rigid - Using the surface}
+% laser range scan combine image and surface image-guided liver surgery \cite{cash2007concepts}
+
+\subsection{Using the vessels}
+The liver vessels build a complicated structure and are
+therefore well suited for registration. Rigid as well as nonrigid registrations
+have been studied based on liver vessels \cite{ribes2012image}\cite{lange20093d}. 
+On intraoperative ultrasound images the
+blood vessel sections are visible as black areas within the liver tissue and can
+be segmented in real time by fast algorithms \cite{ribes2012image}. Then the
+vessels are 
+reconstructed to a 3D US model and an ICP algorithm is used to align the vessel model to
+the preoperative CT data. This method works on a small subvolume of the liver
+and performs a local rigid registration. This method helped to improve the
+initial manual alignment in 8/14 datasets and in 2/14 the algorithm did not converge.
+% The median alignment precision with
+% this method was 6.3 mm averaged over 50 surgeries.
+
+% \begin{figure}[H]
+%   \centering
+%  \includegraphics[width=0.3\textwidth]{VesselRegistration1}
+%  \caption{Vessel based registration \cite{ribes2012image}}
+%   \label{fig:VesselRegistration1}
+% \end{figure}
+
+% \begin{figure}[H]
+%   \centering
+%  \includegraphics[width=0.4\textwidth]{VesselRegistration2}
+%  \caption{Vessel based registration \cite{lange20093d}}
+%   \label{fig:VesselRegistration2}
+% \end{figure}
+
+\begin{figure}[H]
+  \centering
+  \minipage{0.3\linewidth}
+ \includegraphics[width=\linewidth]{VesselRegistration1}
+  \endminipage
+  \hfill
+  \minipage{0.48\linewidth}
+ \includegraphics[width=\linewidth]{VesselRegistration2}
+  \endminipage
+  \hfill
+ \caption{Vessel based registration: left \cite{ribes2012image}, right \cite{lange20093d}}
+  \label{fig:VesselRegistration}
+\end{figure}
+
+% 3D ultrasound-CT registration of the liver (non-rigid) \cite{lange20093d}
+% Surface based US/MeVis-CT registration for open liver surgery \cite{ribes1surface}
+% Automatic registration of 3D ultrasound with pre-operative MeVis-CT (rigid)\cite{ribes2012image}
+
+\subsection{Using the surface and vessels combined}
+To combine the inner structure of the vessels with the surface of the liver was
+an approach to create an automatic registration without the need of an initial
+alignment \cite{nam2011automatic}. They first segment the vessel lumens and the liver surface from 3D
+B-mode ultrasound images. Then they use an edge matching algorithm to achieve an
+automatic initial registration based on the vessels. The registration is
+iteratively refined by jointly using the liver surface and vessel data (Figure
+\ref{fig:SurfaceAndVesselRegistration}). The achieved average distance between
+6-8 anatomical landmarks after automatic registration with this approach was 3.0 mm.
+
+% Automatic registration between 3D intra-operative ultrasound and pre-operative
+% CT images \cite{nam2011automatic}
+\begin{figure}[H]
+  \centering
+ \includegraphics[width=0.8\textwidth]{SurfaceAndVesselRegistration}
+ \caption{Surface and vessel based registration \cite{nam2011automatic}}
+  \label{fig:SurfaceAndVesselRegistration}
+\end{figure}
+
+
+% Registration of organ surface (prostate surface) with intra-operative 3D ultrasound image using
+%  genetic algorithm \cite{wu2003registration}
+
+
+% \subsection{Nonrigid - Using the surface and a tumor}
+% Nonrigid Registration Method
+% for Liver Surgery Using Sparse Intraoperative Data (target registration error (TRE) of 3.3 mm for targets dispersed
+% throughout the phantom volume) \cite{rucker2014mechanics}
+% \begin{figure}[H]
+%   \centering
+%  \includegraphics[width=0.6\textwidth]{SurfaceWithSubsurface}
+%  \caption{Statistical histogramm of 58 target errors from different registration
+%  methods applied to their representive phantom. Red: Rigid registration with an
+%  ICP algorithm. Yellow: Rigid registration and afterwards nonrigid registration
+%  using a surface Laplacian. Light blue: Rigid registration and afterwards
+%  nonrigid registration using their new iterative method. Dark blue: Same as
+%  light blue but with one additional subsurface point for the nonrigid
+%  registration part. \cite{rucker2014mechanics}}
+%   \label{fig:SurfaceWithSubsurface}
+% \end{figure}
+
+\section{Creating models from intraoperative imaging for liver resection
+  surgeries}
+In the following subsections intraoperatively created models of parts of the
+liver are presented. All presented approaches used their reconstructed parts to
+register the surgical site to the preoperative data.
+% \subsection{Prostate surface - Based on ultrasound}
+% prostate surface \cite{wu2003registration}
+% \begin{figure}[H]
+%   \centering
+%  \includegraphics[width=0.6\textwidth]{MeVisExample}
+%  \caption{Example of a preoperative 3D model created by MeVis}%DK patient
+%   \label{fig:MeVisExample}
+% \end{figure}
+
+
+\subsection{Liver surface - Based on laser range scanner}
+Laser range scanners achieve measurments with submillimetric errors and can rapidly
+acquire thousands of 3D points. In addition to collecting dense surface points,
+the scanner simultaneously takes images of the visible scene and texture maps
+the color information onto each surface point (Figure \ref{fig:LaserRangeSurface}). 
+
+The downside of such an approach is that the laser range scanner takes a lot of
+space in the operating room and that it only captures the surface data visible
+from one angle. In addition, only the surface can be reconstructed and no
+internal structures of the liver.
+% laser range scan combine image and surface image-guided liver surgery \cite{cash2007concepts}
+\begin{figure}[H]
+  \centering
+ \includegraphics[width=0.8\textwidth]{LaserRangeSurface}
+ \caption{Laser range scanning during open surgeries \cite{cash2007concepts}.
+   Top left: This image shows that it is difficult to see a large part of the liver
+   surface from one angle. Top right: The reconstructed surface. Bottom:
+   Reconstructed surface combined with the texture map. }
+  \label{fig:LaserRangeSurface}
+\end{figure}
+
+\subsection{Liver surface - Based on stereo endoscopic images}
+This approach works for open surgeries as well as for laproscopic ones. They use
+a optically tracked stereo endoscope to record the surface of the liver with 20 frames per second intraoperatively and use
+the images of each frame to create a dense depth image with subpixel precision \cite{speidel2011intraoperative}.
+From these images the 3D surface positions are calculated. From the growing and resulting
+point cloud the surface is reconstructed in real time \ref{fig:SurfaceReconstructionStereoBased}.
+
+The disadvatage of this approach is that no internal structures are included in
+the reconstruction of the intraoperative situation.
+% Intraoperative surface reconstruction and
+% biomechanical modeling for soft tissue registration \cite{speidel2011intraoperative}
+\begin{figure}[H]
+  \centering
+ \includegraphics[width=0.5\textwidth]{SurfaceReconstructionStereoBased}
+ \caption{Reconstruction of liver phantom. a) The phantom. b) Depth image. c)
+   Initial overlap of the reconstructed point cloud with the tracked liver
+   model. d) Side view \cite{speidel2011intraoperative}}
+  \label{fig:SurfaceReconstructionStereoBased}
+\end{figure}
+
+\subsection{Liver surface and vessels - Based on ultrasound}
+
+
+Automatic registration between 3D intra-operative ultrasound and pre-operative
+CT images \cite{nam2011automatic}
+\begin{figure}[H]
+  \centering
+ \includegraphics[width=0.8\textwidth]{SurfaceAndVessel}
+ \caption{Reconstruction of the vessels and the surface from 3D ultrasound \cite{nam2011automatic}}
+  \label{fig:SurfaceAndVessel}
+\end{figure}
+
+\subsection{Liver vessels - Based on ultrasound}
+Compounding of the US images to create a 3D US vessel model \cite{ribes2012image}
+
+
+
+\section{Deficits of existing solutions}
+Assessment of Intraoperative Liver Deformation During Hepatic Resection:
+Prospective Clinical Study \cite{heizmann2010assessment}
+
+Projective biomechanical depth matching for soft tissue registration in
+laparoscopic surgery \cite{reichard2017projective}
+
+\section{Objectives} 
+The objectives of this Master's thesis are:
+\begin{itemize}
+  \item Implementation of the concept for an intraoperative 3D reconstrction
+  technique of the liver from intraoperative ultrasound. 
+  \item Implementation of the intraoperative resection planning.
+\end{itemize}
+This work focuses on open surgical procedures of liver hepatectomies and
+especially parenchymal-sparing methods.
+
+
+
+
+
+% \begin{itemize}
+%   \item not tracked laproscopic one shot images stereo with registration
+%   \item moved laproscopic tracked endoscope stereo with registration 
+% \end{list}
+
+% \cite{hoppe1992surface}
 
 % \section{Intraoperative ultrasound}
 % \textcolor{green}{Start with why US is used, then describe how it works and the limitations. from there you should have a nice transition to navigation}
@@ -137,30 +335,6 @@
 % on the position sensor (only for passive markers). The position sensor
 % determines the position and orientation of the tracked instruments based on the
 % information it receives from those markers \cite{noauthor_polaris_nodate}.  
-\section{Ultrasound based registration}
-\section{Creating models from intraoperative imaging for liver resection surgeries}
-\section{Deficits of existing solutions}
-\section{Objectives} 
-The objectives of this Master's thesis are:
-\begin{itemize}
-  \item Implementation of the concept for an intraoperative 3D reconstrction
-  technique of the liver from intraoperative ultrasound. 
-  \item Implementation of the intraoperative resection planning.
-\end{itemize}
-This work focuses on open surgical procedures of liver hepatectomies and
-especially parenchymal-sparing methods.
-
-
-
-
-
-% \begin{itemize}
-%   \item not tracked laproscopic one shot images stereo with registration
-%   \item moved laproscopic tracked endoscope stereo with registration 
-% \end{list}
-
-% \cite{hoppe1992surface}
-
 \endinput
 %%% Local Variables:
 %%% TeX-master: "MscThesis"
