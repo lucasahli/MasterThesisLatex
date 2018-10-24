@@ -15,11 +15,11 @@ therefore well suited for registration. Rigid as well as nonrigid registrations
 have been studied based on liver vessels \cite{ribes2012image}\cite{lange20093d}. 
 On intraoperative ultrasound images the
 blood vessel sections are visible as black areas within the liver tissue and can
-be segmented in real time by fast algorithms \cite{ribes2012image}. Then the
+be segmented in real time by the use of fast algorithms \cite{ribes2012image}. Then the
 vessels are 
 reconstructed to a 3D US model and an ICP algorithm is used to align the vessel model to
 the preoperative CT data. This method works on a small subvolume of the liver
-and performs a local rigid registration. This method helped to improve the
+and performs a local rigid registration. It helped to improve the
 initial manual alignment in 8/14 datasets and in 2/14 the algorithm did not converge.
 % The median alignment precision with
 % this method was 6.3 mm averaged over 50 surgeries.
@@ -138,7 +138,7 @@ This approach works for open surgeries as well as for laproscopic ones. They use
 a optically tracked stereo endoscope to record the surface of the liver with 20 frames per second intraoperatively and use
 the images of each frame to create a dense depth image with subpixel precision \cite{speidel2011intraoperative}.
 From these images the 3D surface positions are calculated. From the growing and resulting
-point cloud the surface is reconstructed in real time \ref{fig:SurfaceReconstructionStereoBased}.
+point cloud the surface is reconstructed in real time (Figure \ref{fig:SurfaceReconstructionStereoBased}).
 
 The disadvatage of this approach is that no internal structures are included in
 the reconstruction of the intraoperative situation.
@@ -154,28 +154,55 @@ the reconstruction of the intraoperative situation.
 \end{figure}
 
 \subsection{Liver surface and vessels - Based on ultrasound}
+This approach uses intraoperative ultrasound as the registration tool. It has
+the advantage that inner and outer structures can be combined. They take
+advantage of the fact that the diaphragm can be made visible on ultrasound
+images of the liver \cite{nam2011automatic}. At the same time also the vessels
+are visible on the ultrasound images. Then they automatically segment the large
+vessels and the part of the liver surface that is attached to the diaphragm.
+They use the segmentation results to reconstruct the surface and some of the
+vessels (Figure \ref{fig:VesselAndSurfaceRefinement}). Afterwards they merge the
+reconstructed vessels and the surface to register to a preoperative model
+(Figure \ref{fig:SurfaceAndVessel}).
 
+% Automatic registration between 3D intra-operative ultrasound and pre-operative
+% CT images \cite{nam2011automatic}
 
-Automatic registration between 3D intra-operative ultrasound and pre-operative
-CT images \cite{nam2011automatic}
+\begin{figure}[H]
+  \centering
+ \includegraphics[width=0.8\textwidth]{VesselAndSurfaceRefinement}
+ \caption{Automatic segmentation of the vessels and the surface from filtered 3D
+   ultrasound images and the resulting step by step improved reconstruction \cite{nam2011automatic}}
+  \label{fig:VesselAndSurfaceRefinement}
+\end{figure}
+
 \begin{figure}[H]
   \centering
  \includegraphics[width=0.8\textwidth]{SurfaceAndVessel}
- \caption{Reconstruction of the vessels and the surface from 3D ultrasound \cite{nam2011automatic}}
+ \caption{Left: The merged reconstruction of the vessels and the surface. Right:
+   The whole liver reconstructed from a CT scan \cite{nam2011automatic}}
   \label{fig:SurfaceAndVessel}
 \end{figure}
 
-\subsection{Liver vessels - Based on ultrasound}
-Compounding of the US images to create a 3D US vessel model \cite{ribes2012image}
+% \subsection{Liver vessels - Based on ultrasound}
+% Compounding of the US images to create a 3D US vessel model \cite{ribes2012image}
 
 
 
 \section{Deficits of existing solutions}
-Assessment of Intraoperative Liver Deformation During Hepatic Resection:
-Prospective Clinical Study \cite{heizmann2010assessment}
+From the last sections about the state of the art in navigation of liver
+surgeries a few deficiencies  can be spotted. Regarding the ultrasound based
+registrations, either the reviewed approaches
+need a time consuming initial semi automatic alignment or have problems with the
+compensation for deformations of the liver. 
 
-Projective biomechanical depth matching for soft tissue registration in
-laparoscopic surgery \cite{reichard2017projective}
+Regarding the intraoperative creation of 3D models, these approaches either lead to
+incomplete models of the liver anatomy (only the surface) or  
+% Assessment of Intraoperative Liver Deformation During Hepatic Resection:
+% Prospective Clinical Study \cite{heizmann2010assessment}
+
+% Projective biomechanical depth matching for soft tissue registration in
+% laparoscopic surgery \cite{reichard2017projective}
 
 \section{Objectives} 
 The objectives of this Master's thesis are:
