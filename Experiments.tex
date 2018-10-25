@@ -2,16 +2,16 @@
 In this chapter two experiments will be presented. The first experiment is about
 the accuracy of the reconstructed surface and the second experiment is about the
 usability of the software for surgeons.
-\section{Surface Accuracy on a technical phantom}
+\section{Surface reconstruction accuracy on a technical phantom}
 \label{sec:SurfaceReconstructionAccuracy}
-The work presented in this section was presented at CURAC, Luca
-
+The work presented in this section was presented at CURAC, Luca Sahli,
+\textcolor{red}{Add stuff}
  It is important to know if one can rely on the reconstructed model
 during surgery. Therefore this experiment was done to investigate the accuracy of the reconstructed
 surface at different locations.
 \subsection{Methodology}
-To measure the accuracy of a surface it is necessary to know the true shape of a
-surface. Because we do not know the true shape of the used liver phantom (it is
+To measure the accuracy of a surface it is necessary to know the true shape of the
+surface as accurate as possible. Because we do not know the true shape of the used liver phantom (it is
 always deformed a bit differently), we aquired a reference point grid which
 represents the true shape of the phantom. In order
 to do that a regular grid with a 10 mm spacing was put on the liver phantom and
@@ -23,7 +23,7 @@ Afterwards 10 surface samples with the optically tracked ultrasound were
 aquired. The tracking camerea and the liver phantom were not moved between the
 aquisition of the reference points and the aquisitions of the ultrasound based
 samples. The 10 surfaces were reconstructed using the aquired samples. For each
-reference point the distance to each of the reconstructed surfaces was
+reference point the shortest distance to each of the reconstructed surfaces was
 calculated.
 
 \begin{figure}[H]
@@ -34,7 +34,14 @@ calculated.
   \label{fig:surfaceGrid}
 \end{figure}
 \subsection{Results}
-
+The resulting distances from the reference points to the reconstructed surfaces
+were statistically analyzed.
+The overall median distance for all the measurements is 2,57 mm with an
+interquartile range of 1.32 mm – 5.19 mm (Figure \ref{fig:surfaceDistances}).
+Some large outliers with errors from 10 mm to 50 mm are also present. By projecting these errors corresponding to
+each reference point onto the liver surface, one can see that the highest errors
+are in segments 2 and 3 and on the right superior area of segment 7 and 8. The
+lowest errors are in segments 4, 5, 6 and the anterior part of segment 8 (Figure \ref{fig:surfaceErrors}).
 \begin{figure}[H]
   \centering
  \includegraphics[width=0.4\textwidth]{DistancesBoxplot}
@@ -68,7 +75,21 @@ calculated.
 % \end{figure}
 
 \subsection{Discussion}
+From a quantitative point of view, it turned out that the largest average errors
+are at the boundary of the liver. This is likely because these parts were
+probably not included in every surface scan or because the ultrasound marker was
+at the boundary of the tracking workspace where the tracking error is larger.
+But also the reconstruction of the surfaces at the boundary of the scanned area
+tends to be in the same plane as the principal components of the surface.
 
+Most of the anterior reference points have mean distances between 2 mm and 3 mm.
+These parts of the liver phantom were easier to reach with the ultrasound and
+also the trackable marker had a preferable orientation to the tracking camera
+which improves the tracking accuracy.
+
+To conclude this experiment, the surface is better reconstructed on the anterior
+part of the liver than on the superior and the boarder of the reconstruction should
+not be trusted. 
 
 % \section{Surface reconstruction on retrospective data}
 % \subsection{Methodology}
@@ -77,10 +98,17 @@ calculated.
 % \subsection{Discussion}
 
 \section{Usability Test}
-3 surgeons
-questionnaire
-surface accuracy (using surface registration)
+If a new system is to be developed, an important question to ask is if the
+system will be used or not.
+The system usability scale is a reliable, often used tool for measuring the
+usability of a system. 
+To find out if surgeons will use a system as presented in the previous chapters,
+a usability test was done with three surgeons.
+% 3 surgeons
+% questionnaire
+% surface accuracy (using surface registration)
 \subsection{Methodology}
+
 \subsection{Results}
 \subsection{Discussion}
 
