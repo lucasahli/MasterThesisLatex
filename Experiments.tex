@@ -17,7 +17,7 @@ represents the true shape of the phantom. In order
 to do that a regular grid with a 10 mm spacing was put on the liver phantom and
 with an optically tracked pointer tool each crossing point of the grid was
 aquired 10 times \ref{fig:surfaceGrid}. The mean of the 10 aquisitions of one reference location lead
-to one 3D reference point. In this way 413 3D reference points were created.
+to one 3D reference point. In this way 414 3D reference points were created.
 
 Afterwards 10 surface samples with the optically tracked ultrasound were
 aquired. The tracking camerea and the liver phantom were not moved between the
@@ -34,14 +34,39 @@ calculated.
   \label{fig:surfaceGrid}
 \end{figure}
 \subsection{Results}
+
 \begin{figure}[H]
   \centering
- \includegraphics[width=0.9\textwidth]{surfaceErrors}
- \caption{The mean distance of each reference point visualized by colors. All
+ \includegraphics[width=0.4\textwidth]{DistancesBoxplot}
+ \caption{Boxplot of the distances from the reference points to the surfaces to present overall accuracy.}
+  \label{fig:surfaceDistances}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \minipage{0.93\linewidth}
+ \includegraphics[width=\linewidth]{surfaceErrors}
+  \endminipage
+  \hfill
+  \minipage{0.07\linewidth}
+ \includegraphics[width=\linewidth]{colorBar}
+  \endminipage
+  \hfill
+ \caption{The mean distance (in mm) of each reference point visualized by colors. All
    points with a mean distance of over 5 mm to the surface are colored dark red.
    Points with a mean distacne below 1.5 mm are colored dark green.}
   \label{fig:surfaceErrors}
 \end{figure}
+
+% \begin{figure}[H]
+%   \centering
+%  \includegraphics[width=0.9\textwidth]{surfaceErrors}
+%  \caption{The mean distance of each reference point visualized by colors. All
+%    points with a mean distance of over 5 mm to the surface are colored dark red.
+%    Points with a mean distacne below 1.5 mm are colored dark green.}
+%   \label{fig:surfaceErrors}
+% \end{figure}
+
 \subsection{Discussion}
 
 
