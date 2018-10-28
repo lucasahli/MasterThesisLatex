@@ -1,50 +1,97 @@
 \chapter{Concept}
-In this chapter the desired concept will be presented. 
+In this chapter a concept including intraoperative 3D reconstruction of the liver and
+intaoperative resection planning will be presented. 
 
-Typical concept: \cite{payan2012soft}
-\section{System}
-The hardware used with this system consists of:
-\begin{itemize}
-  \item a tracked ultrasound device
-  \item a tracked pointer tool
-  \item an optical tracking camera to track the instruments
-  \item a computer to run the software
-  \item a 3D-monitor which displays the 3D contents of the software 
-  \item a touch-screen on a 2D-monitor to operate the software and show the
-    ultrasound images
-\end{itemize}
-The software in this system consists of:
-\begin{itemize}
-  \item a sampling method 
-  \item a reconstruction method 
-  \item a segmentation method 
-  \item a planning method 
-  \item a navigation 
-\end{itemize}
+% Typical concept: \cite{payan2012soft}
+\section{Overview}
+The desired concept differs in some places from conventional approaches, but not
+everything changes (Figure \ref{fig:ConceptChanges}). Conventional approaches
+plan the surgery based on the preoperative CT data very accurately on a 
+3D model of the liver. Then at the
+beginning of
+the surgery, because the liver has probably changed its shape since preoperative
+scanning, the whole preoperative model (including the preoperative planning) must be deformed again 
+intraoperatively \cite{payan2012soft}.
 
+The new approach is to create a 3D model of the liver during
+the surgery and plan based on this model. This model will not be a complete
+model of the liver but it will be an undeformed one. Actually, such
+intraoperative models are already created with conventional approaches, they are only used for registration
+and not for navigation. Before the planning also the tumor has to be
+reconstructed intraoperatively.
+
+The hardware for this concept consist of an optical tracking camera, a tracked
+intraoperative ultrasound and a computer with a 2D and a 3D monitor (Figure \ref{fig:HWcolored}). The
+tracking camera is used to track the ultrasound and other surgical tools used
+during the intervention. The ultrasound is used to reconstruct the 3D model of
+the liver with its tumors and the computer with the monitors is used to
+visualize the 3D model and planning of the resection. The 2D monitor has a touch
+interface such that the surgeon can interact with the software.
+
+In order to be able to perform an intervention with this new approach, new
+functionalities must be developed.
 \begin{figure}[H]
   \centering
-  \begin{tabular}[H]{c c c c c c}
-    \multicolumn{2}{c}{\thead{Sampling method \\ to collect points on \\ the liver-surface}} & \multicolumn{2}{c}{\thead{Reconstruction method \\ to reconstruct the surface \\ from the sampled points}} & \multicolumn{2}{c}{\thead{Segmentation method \\ to segment the tumors on \\ the ultrasound images}}
-    \\
-    \multicolumn{2}{c}{\addheight{\includegraphics[width=0.3\linewidth]{samplingMethod}}} &
-    \multicolumn{2}{c}{\addheight{\includegraphics[width=0.3\linewidth]{reconstructionMethod}}} &
-    \multicolumn{2}{c}{\addheight{\includegraphics[width=0.3\linewidth]{segmentationMethod}}} 
-    \\
-    \\
-    \\
-    \multicolumn{3}{c}{\thead{Planning method \\ to plan the resection \\ of the liver}} & \multicolumn{3}{c}{\thead{Navigation mode used \\ to navigate during the \\ removal of the tumor}} 
-    \\
-    \multicolumn{3}{c}{\centering \addheight{\includegraphics[width=0.48\linewidth]{planningMethod}}} &
-    \multicolumn{3}{c}{\addheight{\includegraphics[width=0.48\linewidth]{navigationMode}}} 
-    \\
-    & & & & &
-    % \addheight{\includegraphics[width=0.3\linewidth]{mes08_pointgrid.png}}
-    \\
-  \end{tabular}
-  \caption{Software components}
-  \label{fig:softwareComponents}
+  \includegraphics[width=1.0\textwidth]{ConceptChanges}
+  \caption{The changes from a conventionally navigated liver surgery procedure to the
+    proposed new way of navigating during a liver resection surgery. In the dark gray boxes are the things
+  that are done preoperatively and in the bright gray boxes the things that are
+  done intraoperatively. Boxes with
+    a red cross will not be need with the new approach and green boxes are not
+    needed with the conventional approach.}
+  \label{fig:ConceptChanges}
 \end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{HWcolored}
+  \caption{The setup in the operating room: Red the surgeon; Yellow the
+    tracking camera; Green the ultrasound probe; Dark blue the 3D screen; Light
+    blue the 2D screen.}
+  \label{fig:HWcolored}
+\end{figure}
+
+% The hardware used with this system consists of:
+% \begin{itemize}
+%   \item a tracked ultrasound device
+%   \item a tracked pointer tool
+%   \item an optical tracking camera to track the instruments
+%   \item a computer to run the software
+%   \item a 3D-monitor which displays the 3D contents of the software 
+%   \item a touch-screen on a 2D-monitor to operate the software and show the
+%     ultrasound images
+% \end{itemize}
+% The software in this system consists of:
+% \begin{itemize}
+%   \item a sampling method 
+%   \item a reconstruction method 
+%   \item a segmentation method 
+%   \item a planning method 
+%   \item a navigation 
+% \end{itemize}
+
+% \begin{figure}[H]
+%   \centering
+%   \begin{tabular}[H]{c c c c c c}
+%     \multicolumn{2}{c}{\thead{Sampling method \\ to collect points on \\ the liver-surface}} & \multicolumn{2}{c}{\thead{Reconstruction method \\ to reconstruct the surface \\ from the sampled points}} & \multicolumn{2}{c}{\thead{Segmentation method \\ to segment the tumors on \\ the ultrasound images}}
+%     \\
+%     \multicolumn{2}{c}{\addheight{\includegraphics[width=0.3\linewidth]{samplingMethod}}} &
+%     \multicolumn{2}{c}{\addheight{\includegraphics[width=0.3\linewidth]{reconstructionMethod}}} &
+%     \multicolumn{2}{c}{\addheight{\includegraphics[width=0.3\linewidth]{segmentationMethod}}} 
+%     \\
+%     \\
+%     \\
+%     \multicolumn{3}{c}{\thead{Planning method \\ to plan the resection \\ of the liver}} & \multicolumn{3}{c}{\thead{Navigation mode used \\ to navigate during the \\ removal of the tumor}} 
+%     \\
+%     \multicolumn{3}{c}{\centering \addheight{\includegraphics[width=0.48\linewidth]{planningMethod}}} &
+%     \multicolumn{3}{c}{\addheight{\includegraphics[width=0.48\linewidth]{navigationMode}}} 
+%     \\
+%     & & & & &
+%     % \addheight{\includegraphics[width=0.3\linewidth]{mes08_pointgrid.png}}
+%     \\
+%   \end{tabular}
+%   \caption{Software components}
+%   \label{fig:softwareComponents}
+% \end{figure}
 \section{Functionalities}
 The three main functionalities of the developed concept will be presented in
 this chapter. These functionalities were specifically developed for this project.
@@ -63,28 +110,93 @@ image can be used.
   \label{fig:Render}
 \end{figure}
 
-\textcolor{red}{In order to use ... too complicated. Put an image for that and name the transformations.}
+\textcolor{green}{In order to use ... too complicated. Put an image for that and name the transformations.}
 In order to use the sampled position corresponding to an image, this
 position has to be transformed into the correct coordinate system first. There
-are four different coordinate systems. The first coordinate system is the image
-coordinate system. The units in the image coordinate system are pixels and the
-origin is in the top left corner of the image. The
-second coordinate system is the ultrasound coordinate system. The origin of this
+are four different coordinate systems (Figure \ref{fig:Render}).
+
+The first coordinate system is the image
+coordinate system. The units in the \textbf{image coordinate system} are pixels and the
+origin is in the top left corner of the ultrasound image.
+The second coordinate system is the \textbf{ultrasound coordinate system}. The origin of this
 coordinate system is at the probe tip in the middle and the units in this and
-the following coordinate systems are millimeters. The third coordinate system is the
-ultrasound-tool-marker coordinate system. The origin is at a user defined
-location, relative to the reflective marker spheres. The final
-coordinate system is the tracking camera coordinate system. The origin of this
+the other coordinate systems are millimeters.
+The third coordinate system is the
+\textbf{marker coordinate system}. The origin is at a user defined
+location, relative to the reflective marker spheres.
+The final coordinate system is the \textbf{camera coordinate system}. The origin of this
 coordinate system is at the position sensor in the tracking camera and can not
 be changed.
 
 At the end of this transformation chain, a image pixel 2D position was
 transformed into a tracking camera 3D positon and the units changed
 from pixel to millimeter. This 3D location in the tracking camera coordinate system
-will be added to the collection of points to later reconstruct the surface from.
+can be added to the collection of points to later reconstruct the surface from.
 
-After collecting the surface points, the reconstruction algorithm from Hoppe
-\cite{hoppe1992surface} reconstructs the surface from these points.
+After collecting the surface points, a reconstruction algorithm reconstructs the surface from these points.
+\subsubsection{Surface reconstruction from unorganized points}
+\textcolor{green}{First, collecting the sample ... These terms should match the titles below
+Both other chapters, explain first what the process is for, then what methods are available}
+A surface reconstruction's goal is to create a surface from sampled points \cite{berger2017survey}. Two
+main steps need to be processed. First, acquisition of the data to create a sample. Secondly,
+apply a reconstruction algorithm on the sampled points.
+
+\paragraph{Data acquisition}
+\textcolor{green}{what the process is for, then what methods are available}
+In order to reconstruct a surface it is necessary to have some information about
+it. Therefore a set of points which lie on or near the unknown surface is acquired first. A
+reconstruction algorithm has then to reconstruct the surface from these points.
+
+There exist different methods to collect surface points
+\cite{franca20053d}\cite{levoy2000digital}\cite{cui20113d}\cite{chu2002infrared}\cite{dou20153d}.
+Optical (non-contact scan) scans are the most popular ones. Specialy laser based
+scanners can scan very fast and with a precision in the order of micrometers. Also contact scans exist
+\cite{pai2001scanning}. Contact scans can also be very precise (in the order of
+micrometers).
+
+In the field of liver surface scanning only a few articles were published  \cite{maier2014comparative} \cite{thompson2015accuracy}. 
+They used stereo laparoscopic cameras to sample the surface.
+
+\paragraph{Reconstruction algorithms}
+\textcolor{green}{ switch explicit and implicit, so you have the same order as in the figure}
+
+\textcolor{green}{what the process is for, then what methods are available}
+The problem
+surface reconstruction aims to solve is the representation of a surface in 
+digital form, from error containing data that has first been scanned in the
+real world.
+
+Again, a lot of reconstruction algorithms exist \cite{lim2014surface}, but not
+all of them are made to reconstruct from unorganized points. This means
+that the point orders, orientations, connections and the topological type of the
+surface is not known a priori. Therefore it is necessary that the algorithm does not assume any structure
+on the data points \cite{hornung2006robust} \cite{yu1999surface}. The orientations, connections and the topological
+type must be inferred from the points. This is a major difficulty of the general surface
+reconstruction problem \cite{hoppe1992surface}. In the past few decades, many
+algorithms that can solve this problem have been published. Nevertheless it is
+still a challanging task that is part of current research \cite{li2018surface}.
+The available reconstrction types can be classified into two groups: implicit
+volume-based and explicit mesh-based reconstructions.
+\begin{figure}[H]
+  \centering
+ \includegraphics[width=\textwidth]{ImplicitVSExplicit}
+ \caption{The difference between implicit and explicit surface reconstructions.
+   On the left side is the pointcloud used as input. In the middle the result of an
+   implicit reconstruction. On the right side the result of an explicit
+   reconstruction \cite{stanfordPP}}
+  \label{fig:ImplicitVSExplicit}
+\end{figure}
+\subparagraph{Implicit volume-based reconstrction}
+Implicit volume-based reconstruction techniques construct an implicit
+volume-function from the input points. From the iso-surface of the
+volume-function a restored surface can then be optained. For these methods it is
+not a problem if the surface topology is complex. But most of these methods
+suffer from oversmoothing the data and the need of accurate directions of normal
+vectors in addition to the unorganized points. 
+\subparagraph{Explicit mesh-based reconstrction}
+Explicit mesh-based reconstrction methods form a triangular mesh directly from
+the unorganized points. These mesh-based reconstructions are precise but they
+have problems with noise, complex shapes and especially holes in data.
 \subsection{Tumor Segmentation}
 To reconstruct and later plan the resection of a tumor, the shape
 of the tumor has to be made visible first. Because most liver tumors are not visible from the outside of the liver, an
@@ -147,7 +259,8 @@ planning to resect the tumor.
 % By use of the initialization the tumor is
 % segmented on the ultrasound images. Then the segmentations are combined in order
 % to reconstruct a 3D model of the tumor.  
-\subsection{Resection planning for non-anatomical ...}
+
+% \subsection{Resection planning for non-anatomical ...}
 
 %%% Local Variables:
 %%% TeX-master: "MscThesis"

@@ -49,6 +49,8 @@
 \usepackage{multirow} % Create tabular cells spanning multiple rows
 \usepackage{booktabs} % The package enhances the quality of tables in LATEX, providing extra commands
 \usepackage{makecell} % 
+\usepackage{titlesec}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Luca Sahli's commands
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -56,6 +58,17 @@
   \raisebox{0pt}[\dimexpr\height+(#1)\relax]{#2}%
 }
 % \newcommand*\mc[1]{\multicolumn{3}{c}{#1}}
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\z@}%
+                                     {-3.8ex\@plus -2ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\small\bfseries}}
+
+\makeatother
 % *******************************************************************
 % *******************************************************************
 
@@ -99,7 +112,6 @@
                   
 % Bibliography style file
 \bibliographystyle{ieee}
-
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Titlepage, abstract table of contents etc.
