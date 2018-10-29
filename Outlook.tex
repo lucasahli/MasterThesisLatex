@@ -12,13 +12,52 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % from Hoppe \cite{hoppe1992surface} 
 \chapter{Outlook}
+So far the software was only tested on a liver phantom. Further investigations
+should be done to prove the applicability of the method in real patients.
+Therefore the software should be tested on an ex-vivo liver. Such a test could
+involve the removal of an artificially placed tumor and an accuracy measurement
+of the surface. However, also an evaluation with real patient data from a
+navigated liver resection could help to further analyze the correct functioning
+of the liver surface detector and the tumor segmentations on the ultrasound
+images. Additionally the liver surface detector should be extended to be able to
+distinguish different organs such that it does not recognize other organ's
+surfaces as liver surfaces.
 
-Surface reconstruction on an ex-vivo liver
-Evaluation on retrospective data from navigated liver resections
-Inclusion of vessel structures
-Adjust resection plan intraoperatively
-\textit{Provide a vision of possible future work to continue and extend your thesis research.}
-\cite{postelnicu2009combined} paper -->Combined volumetric and surface registration
+In order to be able to navigate laproscopic resections with this method as well,
+the possibility to track electromagnetically should be integrated. This would
+lead to the method being tested and used more frequently as most resections are performed laproscopiclly.
+
+% Surface reconstruction on an ex-vivo liver --> test cutting out a tumor, measure accuracy
+% Evaluation on real patient data from navigated liver resection --> surface
+% detection, tumor segmentation
+% EM tracking --> enables for more surgeries that can be used for testing
+
+Future work to continue and extend the developed concept should go in the
+direction of completing the 3D intraoperative reconstruction. The liver's vessel
+structures should be added to the model. Probably as a first step only the
+vessels near or in the volume affected by the planned resection.
+
+In the current version of the software, tumors are approximated by spheres.
+This should be improved by adding a method to accurately reconstruct tumors
+automatically after semi automatic initialization. This would lead to more accurate
+respectation of safety margins around them. As a first step the semi automatic
+segmentation method should be optimized such that it works without manual
+corrections after the first manual initialization.
+
+At the moment only one resection shape can be selected and it cannot be adapted.
+A method to adjust the resection's shape, surface entering location and safety
+margin would help the surgeons to create better plannings and should be added to
+surface. If adjusting one shape is not enough for the surgeons needs, then more
+shapes should added. 
+
+% Reconstruct accurate shape of the tumor to improve accurate safety margin respectation.
+% Surface reconstruction on an ex-vivo liver
+% Evaluation on real data from navigated liver resection
+% Inclusion of vessel structures
+% Adjust resection plan intraoperatively
+% \textit{Provide a vision of possible future work to continue and extend your thesis research.}
+
+% \cite{postelnicu2009combined} paper -->Combined volumetric and surface registration
 
 \endinput
 %%% Local Variables:
