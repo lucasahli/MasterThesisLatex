@@ -12,8 +12,33 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Introduction}
-\section{Motivation} 
+% \section{Motivation}
+The liver is an important organ in the human body that is often affected by
+cancer. Untreated liver
+cancer leads to death and the only curative treatment of it is surgery. Liver
+resection surgery is the gold standard treatment and intraoperative ultrasound is the
+tool used to navigate during these surgeries because it allowes to look into the
+organ which helps to navigate. However, image guidance is not used regularly in
+this kind of surgery
+although it has the potential to improve
+surgical outcome through increased precision, accuracy and reproducibility.
 
+Conventional approaches create a virtual 3D model of the liver from medical
+image data prior to the surgery. These models can then be used to plan the
+resection surgery and to navigate during the intervention. Image to patient
+registration is the task of aligning the virtal 3D model to the patients anatomy
+in the operating room. In order to register, part of the patient's liver is
+reconstructed intraoperatively to know the actual orientation and position of
+the organ. Because the liver deforms between the preoperative imaging
+and the surgery, a rigid registration can not superimpose the virtual and real
+liver perfectly. To compensate for such deformations is a difficult and usolved
+problem today.
+
+Conventional approaches already reconstruct parts of the liver but they use them
+for registration instead of navigation. This project focuses on the conceptualization, implementation and evaluation of a concept for the creation of an
+intraoperative 3D model of the liver and the intraoperative resection planning
+on such a model. Like this, the problems of registration and deformation
+compensation would not need to be solved any more.  
 % time used to  of the
 % liver.
 % Moreover, most navigation models are expensive and time-consuming.
