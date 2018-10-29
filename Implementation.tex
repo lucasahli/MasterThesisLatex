@@ -438,7 +438,61 @@ such that surgeons can see the surgical site inside the liver intraoperatively.
 % Before starting up the application one can
 % configure if the 3D scene is displayed on a 3D or 2D screen. 
 \section{UI Concept}
+% The user interface was developed in the interface markup language QML (QT markup
+% language).
+The user interface of the software should give the surgeon confidence and
+accompany him safely through the operation. The software guides the surgeon step
+by step through the operation by telling him what he has to do next in order to
+continue the surgery. This informations are given to him on the 2D
+touch screen by different slides. The individual slides have an uniform structure (Figure
+\ref{fig:uiExample}). The content is in the middle, on the right side is the
+forward button and on the left side is the backward button. On the top is the
+indicator row which shows the visibility indicators for the tracked tools by the
+tracking camera. In the top right corner are the buttons to close the
+application or to take screenshots and a button to reset the view on the 3D screen. 
+\begin{figure}[H]
+  \centering
+  \minipage{0.48\linewidth}
+  \includegraphics[width=\linewidth]{uiSizesLayout} 
+  \endminipage
+  \hfill
+  \minipage{0.48\linewidth}
+  \includegraphics[width=\linewidth]{UIexample}
+  \endminipage
+  \hfill 
+ \caption{Left: The structure of the implemented user interface slides. Right: As
+   example the seen slide while sampling the liver surface.}
+  \label{fig:uiExample}
+\end{figure}
+The content changes on each slide and the forward and backward buttons
+remain but change their visibility depending on the progress status on the
+current slide \ref{fig:uiExample}. This means the forward button is grayed out while not all requirements to continue the surgery as
+expected by the software are met. The backward button is not visible when it is
+not possible to go back to a previous slide. The content is filled with buttons
+and informations needed to complete the task corresponding to the current slide.
 
+
+
+\begin{figure}[H]
+  \centering
+  \minipage{0.3\linewidth}
+  \includegraphics[width=\linewidth]{UIworkflow1} 
+  \endminipage
+  \hfill
+  \minipage{0.3\linewidth}
+  \includegraphics[width=\linewidth]{UIworkflow2}
+  \endminipage
+  \hfill
+  \minipage{0.3\linewidth}
+  \includegraphics[width=\linewidth]{UIworkflow3}
+  \endminipage
+  \hfill 
+ \caption{Example of a slide sequence from left to right: First, the slide
+   before showing the ultrasound tool to the tracking camera, then the slide
+   after showing the ultrasound and finally the slide to start the sampling of
+   the surface.}
+  \label{fig:workflowExample}
+\end{figure}
 %%% Local Variables:
 %%% TeX-master: "MscThesis"
 %%% End:
