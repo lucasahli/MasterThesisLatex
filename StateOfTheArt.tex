@@ -1,16 +1,17 @@
 \chapter{State of the art}
-This section presents approaches to tackle the problems of registraition during
+This section presents the state of the art in navigation techniques for liver
+surgery with a focus on approaches tackling the problems of registration during
 liver surgeries and the challanges when creating 3D models of the liver
 intraoperatively. Advantages and disadvatages of the different approaches are
 presented and discussed.
 \section{Ultrasound based registration of the liver}
-
+\label{sec:ultrasoundBasedRegistration}
 
 % \subsection{Rigid - Using the surface}
 % laser range scan combine image and surface image-guided liver surgery \cite{cash2007concepts}
 
-\subsection{Using the vessels}
-The liver vessels build a complicated structure and are
+\subsection{Vessel based}
+The liver vessels build a complex structure and are
 therefore well suited for registration. Rigid as well as nonrigid registrations
 have been studied based on liver vessels \cite{ribes2012image}\cite{lange20093d}. 
 On intraoperative ultrasound images the
@@ -20,7 +21,8 @@ vessels are
 reconstructed to a 3D US model and an ICP algorithm is used to align the vessel model to
 the preoperative CT data. This method works on a small subvolume of the liver
 and performs a local rigid registration. It helped to improve the
-initial manual alignment in 8/14 datasets and in 2/14 the algorithm did not converge.
+initial manual alignment in 8/14 datasets and in 2/14 the algorithm did not
+converge \cite{ribes2012image}.
 % The median alignment precision with
 % this method was 6.3 mm averaged over 50 surgeries.
 
@@ -57,9 +59,9 @@ initial manual alignment in 8/14 datasets and in 2/14 the algorithm did not conv
 % Automatic registration of 3D ultrasound with pre-operative MeVis-CT (rigid)\cite{ribes2012image}
 
 \subsection{Using the surface and vessels combined}
-To combine the inner structure of the vessels with the surface of the liver was
+To combine the inner structure of the vessels with the surface of the liver is
 an approach to create an automatic registration without the need of an initial
-alignment \cite{nam2011automatic}. They first segment the vessel lumens and the liver surface from 3D
+alignment. Nam et al. \cite{nam2011automatic} first segment the vessel lumens and the liver surface from 3D
 B-mode ultrasound images. Then they use an edge matching algorithm to achieve an
 automatic initial registration based on the vessels. The registration is
 iteratively refined by jointly using the liver surface and vessel data (Figure
@@ -96,6 +98,25 @@ iteratively refined by jointly using the liver surface and vessel data (Figure
 %  registration part. \cite{rucker2014mechanics}}
 %   \label{fig:SurfaceWithSubsurface}
 % \end{figure}
+
+\section{Surface registration}
+Surface registration is registration based on surfaces. It is used and studied
+for several years in all kinds of fields \cite{ramos2015review}. Especially in
+the field of medical technology, a lot of research is being done in the
+direction of contactless registration. Intraoperatively, different camera technologies which lead
+to depth images are used to sample the surface of an organ. Often used imaging systems are stereo cameras
+\cite{furukawa2010accurate}, structured light \cite{salvi2004pattern} and
+laser range scanners \cite{cash2003incorporation}. From these intraoperatively
+created data sets, surfaces are reconstructed and then used for registration. To
+find the mapping between the surfaces, mostly different variants of the iterative
+closest point (ICP) \cite{besl1992method} algorithm are used. 
+
+These surface based methods are limited for different reasons. In most cases
+only part of the whole organ can be seen (scanned). The scanned surface may lack
+of unique structures on the surface. The scanning process can 
+lead to noisy data. The organ of interest may be deformed between the
+acquisitions of the surface samples. Therefore researchers try to compensate for
+intraoperative soft-tissue deformations \cite{cash2005compensating}\cite{dagon2008real}.
 
 \section{Creating models from intraoperative imaging for liver resection
   surgeries}
@@ -155,9 +176,9 @@ the reconstruction of the intraoperative situation.
 
 \subsection{Liver surface and vessels - Based on ultrasound}
 This approach uses intraoperative ultrasound as the registration tool. It has
-the advantage that inner and outer structures can be combined. They take
+the advantage that inner and outer structures can be combined. Nam et al. \cite{nam2011automatic} take
 advantage of the fact that the diaphragm can be made visible on ultrasound
-images of the liver \cite{nam2011automatic}. At the same time also the vessels
+images of the liver. At the same time also the vessels
 are visible on the ultrasound images. Then they automatically segment the large
 vessels and the part of the liver surface that is attached to the diaphragm.
 They use the segmentation results to reconstruct the surface and some of the
@@ -202,8 +223,10 @@ a 3D model of the liver surface and vessels using the intraoperative ultrasound.
 But they use the created 3D model to register to a preoperative CT scan instead
 of directly navigating using the intraoperatively created 3D model.
 
-To conclude, no system for liver surgeries exists allowing intraoperative creation of a 3D model and
-its use for navigation afterwards.
+To conclude, registration based navigation approaches are error prone and
+increase intraoperative complexity. So far, no system for liver surgeries allowing intraoperative creation of a 3D model and
+its use for navigation afterwards exists. Such a system could decrease surgical
+complexity by eliminating registration from the workflow.
 % Assessment of Intraoperative Liver Deformation During Hepatic Resection:
 % Prospective Clinical Study \cite{heizmann2010assessment}
 
@@ -211,14 +234,14 @@ its use for navigation afterwards.
 % laparoscopic surgery \cite{reichard2017projective}
 
 \section{Objectives} 
-The objectives of this Master's thesis are:
+To tackle the challanges described in the previous section, the
+objectives of this Master's thesis are defined as follows:
 \begin{itemize}
-  \item Implementation of the concept for an intraoperative 3D reconstrction
+  \item Implementation of a concept for an intraoperative 3D reconstruction
   technique of the liver from intraoperative ultrasound. 
-  \item Implementation of the intraoperative resection planning.
+  \item Implementation of an intraoperative resection planning.
 \end{itemize}
-This work focuses on open surgical procedures of liver hepatectomies and
-especially parenchymal-sparing methods.
+This work focuses on open surgical procedures of parenchymal-sparing liver resections.
 
 
 
