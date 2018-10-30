@@ -16,30 +16,30 @@
 surgery. Liver resection surgeries are the gold standard to treat these
 patients. Image guided navigation approaches are not regularly used in this kind
 of surgery because the involved registration of preoperative imaging data to the
-surgical site leads to difficulties with deformations. Therefore the aim of this
+surgical site leads to difficulties with deformations. The aim of this
 thesis is to conceptualize, implement and evaluate a new approach to navigate in
-tissue sparing resections which works without registration. This method should
+tissue sparing resections without registration. This method would instead 
 intraoperatively reconstruct the liver and create a surgical plan to resect
 tumors near the liver surface. 
 \vskip1em
-\noindent\textbf{Methods} The reconstruction of the liver is done in two steps. First,
-the surface is reconstructed from a sample of points which were taken from
-tracked ultrasound after analysing whether the ultrasound probe is on the liver
-surface or not. Secondly, the tumor is reconstructed as a sphere. The location
+\noindent\textbf{Methods} Liver reconstruction is done in two steps. First, the
+surface is reconstructed from a sample of points which were acquired from
+tracked ultrasound. Only points corresponding to ultrasound images arising from
+the liver surface are added to the sample. Secondly, the tumor is reconstructed as a sphere. The location
 and diameter of this sphere are determined from the tracked ultrasound images.
 After freezing an ultrasound image which shows the largest diameter of the
 tumor, it is semi-automatically segmented. The center of the segmentation is the
 tumor center and the diameter is estimated from the segmentation contour. Using
-the created 3D liver model a plan to resect the tumor is created by fitting a
-resection shape which respects the safety margin around the tumor. Finally, to
-test the resulting approach, two experiments are performed. One experiment
-to evaluate the accuracy of the reconstructed surface was done on a liver
-phantom. A usability test was conducted with three surgeons as an experiment to evaluate the
+the created 3D liver model, a plan to resect the tumor is created by fitting a
+resection shape which respects the safety margin around it. Finally, to
+test the resulting approach, two experiments are performed on a liver phantom.
+The first one was executed to evaluate the accuracy of the reconstructed surface.
+The second one was an usability test conducted with three surgeons to evaluate the
 software applicability in the operating room. 
 \vskip1em
 \noindent\textbf{Results} The accuracy experiment of the reconstructed liver surface
 shows a median error of 2.57 mm. Most of the accessible liver surface has been
-reconstructed exactly but large errors are visible at the edge of
+reconstructed exactly, but large errors (up to 50 mm) are visible at the edge of
 the reconstructed surface. The usability test shows that the surgeons find the
 software useful and that they could imagine to use such a system in the
 operating room.

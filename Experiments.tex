@@ -4,9 +4,12 @@ the accuracy of the reconstructed surface and the second experiment is about the
 usability of the software for surgeons.
 \section{Surface reconstruction accuracy on a technical phantom}
 \label{sec:SurfaceReconstructionAccuracy}
-The work presented in this section was presented at CURAC, Luca Sahli,
-\textcolor{red}{Add stuff}
- It is important to know if one can rely on the reconstructed model
+\textit{The work presented in this section was presented at CURAC: Luca Sahli, Stefan
+Weber, Iwan Paolucci, ''Liver surface reconstruction from navigated ultrasound 
+during image-guided liver surgery''}
+ 
+\vskip1em
+It is important to know if one can rely on the reconstructed model
 during surgery. Therefore this experiment was done to investigate the accuracy of the reconstructed
 surface at different locations.
 \subsection{Methodology}
@@ -14,13 +17,13 @@ To measure the accuracy of a surface it is necessary to know the true shape of t
 surface as accurate as possible. Because we do not know the true shape of the used liver phantom (it is
 always deformed a bit differently), we aquired a reference point grid which
 represents the true shape of the phantom. In order
-to do that a regular grid with a 10 mm spacing was put on the liver phantom and
+to do that, a regular grid with a 10 mm spacing was put on the liver phantom and
 with an optically tracked pointer tool each crossing point of the grid was
-aquired 10 times \ref{fig:surfaceGrid}. The mean of the 10 aquisitions of one reference location lead
-to one 3D reference point. In this way 414 3D reference points were created.
+aquired 10 times (Figure \ref{fig:surfaceGrid}). The mean of the 10 aquisitions of one reference location lead
+to one 3D reference point. In this way, 414 3D reference points were created.
 
 Afterwards 10 surface samples with the optically tracked ultrasound were
-aquired. The tracking camerea and the liver phantom were not moved between the
+acquired. The tracking camerea and the liver phantom were not moved between the
 aquisition of the reference points and the aquisitions of the ultrasound based
 samples. The 10 surfaces were reconstructed using the aquired samples. For each
 reference point the shortest distance to each of the reconstructed surfaces was
@@ -75,21 +78,23 @@ lowest errors are in segments 4, 5, 6 and the anterior part of segment 8 (Figure
 % \end{figure}
 
 \subsection{Discussion}
-From a quantitative point of view, it turned out that the largest average errors
-are at the boundary of the liver. This is likely because these parts were
-probably not included in every surface scan or because the ultrasound marker was
-at the boundary of the tracking workspace where the tracking error is larger.
-But also the reconstruction of the surfaces at the boundary of the scanned area
-tends to be in the same plane as the principal components of the surface.
-
 Most of the anterior reference points have mean distances between 2 mm and 3 mm.
 These parts of the liver phantom were easier to reach with the ultrasound and
 also the trackable marker had a preferable orientation to the tracking camera
 which improves the tracking accuracy.
 
+From a quantitative point of view, it turned out that the largest average errors
+are at the boundary of the liver. This is likely because these parts were
+probably not included in every surface scan or because the ultrasound marker was
+at the boundary of the tracking workspace where the tracking error is larger.
+But also the reconstruction of the surfaces at the boundary of the scanned area
+tends to be in the same plane as the principal components of the surface which
+also induces errors.
+
 To conclude this experiment, the surface is better reconstructed on the anterior
-part of the liver than on the superior and the boarder of the reconstruction should
-not be trusted. 
+part of the liver than on the superior part. The boarder is poorly reconstructed and should
+not be trusted. However, the accuracy is good for such an early state of the
+project and it can hopefully be improved in the future.
 
 % \section{Surface reconstruction on retrospective data}
 % \subsection{Methodology}

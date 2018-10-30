@@ -1,29 +1,30 @@
 \chapter{Implementation}
 This chapter will explain how the described concept has been implemented.
-First an overview of the concept and then the main parts of the software in more
+First an overview of the concept and then the main parts of the software are explained in more
 detail.
 The trackable marker is attached to the ultrasound probe. The marker is
 detectable by the tracking camera and enables the camera to determine the
 position and orientation of the ultrasound probe. The probe on its own will
 create an ultrasound image. Then the sampled ultrasound image and pose will be
-post processed as a pair in the computer. In the software, depending on the
-actual state of the surgery, the use of the two will be different.
+post processed as a pair. Depending on the
+actual state in the surgery, the use of the that pair will be different (Figure \ref{fig:FirstFlowChart}).
+
+The following sections will explain the details of the implemented software
+parts. 
 
 \begin{figure}[H]
   \centering
  \includegraphics[width=0.65\textwidth]{FirstFlowChart}
-  \caption{The way of the ultrasound image and the corresponding pose to the
+  \caption{This flow chart shows how the ultrasound image and the corresponding pose reach the
     computer and later to the different parts in the software.}
   \label{fig:FirstFlowChart}
 \end{figure}
 
 \section{Surface Reconstruction}
-
-
 % \cite{kazhdan2005reconstruction} oriented point set hornung2006robust
 % \cite{hornung2006robust} non uniformly sampled point clouds without normal information
 % \cite{yu1999surface} NN to reconstruct from unorganized points
-\textcolor{green}{An image pose has to take two hurdles. sounds strange..}
+% \textcolor{green}{An image pose has to take two hurdles. sounds strange..}
 While the surgeon is scanning the surface, the software in the background
 filters out unusable positions. An image pose pair has to pass two tests to
 become accepted in the group of surface points. The image has to prove that it
@@ -34,8 +35,9 @@ carried out.
 \begin{figure}[H]
   \centering
  \includegraphics[width=0.65\textwidth]{SecondFlowChart}
-  \caption{The way of the image and its pose if the surgeon is scanning the
-    surface.}
+  \caption{This flow chart shows how the image and its pose are checked and used
+    while the surgeon is scanning the
+    liver surface.}
   \label{fig:SecondFlowChart}
 \end{figure}
 
@@ -86,7 +88,6 @@ is not empty it gets cleard.
 To find outliers in the current buffer the local
 outlier factor is calculated for each position. 
 
-\subsubsection{Local outlier factor}
 The local outlier factor is a numerical value that describes the local density
 of a position compared to its k-nearest neighbors (Figure
 \ref{fig:lofExample}).
@@ -108,17 +109,20 @@ Five steps can be separeted to find the LOF of one position.
   \item{Calculate the \textit{local reachability density} for all points}
   \item{Calculate the \textit{local outlier factor}}
 \end{enumerate}
-The \textit{reachability distance} of point $A$ from another point $B$ is defined:
+\vskip1em
+\noindent The \textit{reachability distance} of point $A$ from another point $B$ is defined:
 \begin{gather*}
   \mbox{reachability-d}_k(A,B)=\max\{\mbox{k\_d}(B), \mbox{d}(A,B)\}
 \end{gather*}
-The \textit{k-distance} of point $B$ depends on its k-nearest neighbors
+\vskip1em
+\noindent The \textit{k-distance} of point $B$ depends on its k-nearest neighbors
 and does not need to include point $A$.
 But the actual distance between point $A$ and $B$ depends on only $A$
 and $B$. The larger of the two will be the \textit{reachability distance} of
 point $A$ from point $B$.
 
-The \textit{local reachability density} of a point $A$ describes its neighborhood
+\vskip1em
+\noindent The \textit{local reachability density} of a point $A$ describes its neighborhood
 and is defined by:
 \begin{gather*}
   \mbox{LRD}(A):=1/\left(\frac{\sum_{B\in kNN(A)}\mbox{reachability-d}_k(A, B)}{|kNN(A)|}\right)
@@ -126,7 +130,8 @@ and is defined by:
 In words this is the inverse of the sum of the \textit{reachability distances} of point $A$
 from its k-nearest neighbors devided by $k$.
 
-Finally the \textit{local outlier factor} of a point $A$ indicates how his
+\vskip1em
+\noindent Finally the \textit{local outlier factor} of a point $A$ indicates how his
 neighborhood compares with the neighborhoods of his k-nearest neighbors. The LOF
 of $A$ is defined by:
 \begin{gather*}
@@ -176,7 +181,7 @@ reference points to the reconstructed surface was calculated.
 The found mean distance varies from 5.1 mm to 3.9 mm. Neighborhood sizes smaller
 than 8 show an increase of the mean distance for sample spacings larger than 25
 mm. Neighborhood sizes over 30 seem to increase the mean distance also.
-The standard deviation of the mean varies between 6.1 mm and 4.6 mm. These high
+The standard deviation (STD) of the mean varies between 6.1 mm and 4.6 mm. These high
 deviations result mostly from the boarder part of the reconstructions where the
 reference points are more than 2 cm away from the surfaces (see section
 \ref{sec:SurfaceReconstructionAccuracy}). One can say the standard deviation of
@@ -187,7 +192,7 @@ till then it decreases again.
 \begin{figure}[h]
   \centering
  \includegraphics[width=0.9\textwidth]{gridSearchResultSTDCrop}
-  \caption{This contour plot shows the STD of the mean distance calculated over 10
+  \caption{This contour plot shows the standard deviation (STD) of the mean distance calculated over 10
     differently sampled point collections. All point collections represent the
     surface of the same liver phantom.}
   \label{fig:gridSearchResultSTD}
@@ -212,9 +217,9 @@ define a sphere two components are needed: the location and the radius of the
 spere.
 
 To get more information about the tumor, the tumor on the freezed image has to be segmented. This
-segmentation is done semi automatically. That means the surgeon has to
+segmentation is obtained semi automatically. That means the surgeon has to
 roughly initialize the segmentation manually and then the graph cut algorithm
-implemented by openCV will segment the the tumor. From the resulting
+implemented by OpenCV will segment the the tumor. From the resulting
 segmentation shape, the tumor center and radius are estimated. The center
 corresponds to the mean of the segmented boarder pixels and the radius is the
 mean between the largest and the shortest distance from the boarder pixels to
@@ -225,8 +230,8 @@ tumor can be drawn into the same coordinate system as the liver surface.
 \begin{figure}[H]
   \centering
  \includegraphics[width=1.2\textwidth]{ThirdFlowChart}
-  \caption{The way of the image and its pose if the surgeon is scanning the
-    surface.}
+  \caption{This flow chart shows how the image and its pose are used to create a
+    sphere that represents a tumor in the reconstructed liver model.}
   \label{fig:ThirdFlowChart}
 \end{figure}
 
@@ -240,7 +245,7 @@ tumor (Figure \ref{fig:InitializeGraphCut}). And a red circle to color pixels su
 originating from the tumor. Most of the time the two circles need to be
 increased or decreased in size. This is done by clicking the plus or minus
 buttons. Both circles are changed at the same time. The position can be changed
-by using the arrow buttons. As soon as the surgeon is satisfied, he confirms the
+by using the arrow buttons. As soon as the segmentation is satisfactory for the surgeon, he confirms the
 initialization and the created initialization mask is passed to the segmentation algorithm.
 \begin{figure}[H]
   \centering
@@ -346,7 +351,7 @@ on the liver surface to show where the surgeon could start the resection.
   \label{fig:FourthFlowChart}
 \end{figure}
 
-\subsection{Cone fitting around tumor}
+\subsection{Cone fitting around resection margin}
 In order to keep as much healthy tissue as possible and still remove the tumor
 while maintaining the necessary safety margin around the tumor, the resection
 plane is recalculated for each tumor. Depending on the distance (d) between tumor
@@ -356,7 +361,7 @@ distances larger than 30 mm the angle is fixed to 10°. The direction of the con
 is defined by the vector from the tumor center to the nearest point (P) on the
 surface. After constraining the cone to be tangential to the sphere of the
 safety margin on both sides, the position of the cone apex (A) can be calculated. By
-additiaonally forcing the cutting of the cone tangential to the sphere of the
+enforcing the cutting of the cone tangential to the sphere of the
 safety margin, the length of the cone is limited towards the apex. The base of
 the cone is defined to be 10 mm further away from the tumor than the surface
 point. Finally we have the shape, size and position of the cone that leads to a
@@ -387,8 +392,8 @@ with the live ultrasound image, the 3D models become visible on the ultrasound
 image (Figure \ref{fig:cutterExample}). Figure \ref{fig:FifthFlowChart} explains how an image and its
 corresponding pose are used to cut the 3D scene and blend the contours with the
 live image. First, the pose is used to check if the image cuts an object in the
-scene. This is done with the \textit{vtkCutter} class. This class can cut
-through a 3D object with an implicite function. The implicite function of an
+scene. This is done with the \textit{vtkCutter} class. This class can simulate a
+cut through a 3D object with an implicite function. The implicite function of an
 image is a plane, and therefore simple to create by using the image pose. Because the
 cutter can only return a binary mask of where it cuts an object, the cutter
 has to check each object separately. Each time the returned mask from the cutter
@@ -417,7 +422,8 @@ during the navigated intervention.
   \hfill 
  \caption{On the left side is the 3D scene with the ultrasound image cutting
    through the tumor, safety margin and the resection plane. On the right side
-   is the resulting cutting overlay on the live ultrasound image.}
+   is the resulting cutting overlay on the live ultrasound image. Red: Liver
+ surface; Yellow: Tumor; Blue: Safety margin; Green: Resection plane.}
   \label{fig:cutterExample}
 \end{figure}
 \subsection{3D model}
