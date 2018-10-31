@@ -50,7 +50,7 @@
 \usepackage{booktabs} % The package enhances the quality of tables in LATEX, providing extra commands
 \usepackage{makecell} % 
 \usepackage{titlesec}
-
+\usepackage{pdfpages} % to include pdf pages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Luca Sahli's commands
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -151,10 +151,10 @@
 \nocite{*}
 \bibliography{References}
 
-{
-   \vskip1em
-   \noindent\textit{etc.}
-} % Remove this block.
+% {
+%    \vskip1em
+%    \noindent\textit{etc.}
+% } % Remove this block.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Appendices
@@ -162,7 +162,6 @@
 \part*{Appendices}
 \begin{appendix}
 	\include{Appendix_1}
-	\include{Appendix_2}
 \end{appendix}
 
 \end{document}
