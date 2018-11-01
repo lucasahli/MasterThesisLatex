@@ -18,7 +18,7 @@ On intraoperative ultrasound images the
 blood vessel sections are visible as black areas within the liver tissue and can
 be segmented in real time by the use of fast algorithms \cite{ribes2012image}. Then the
 vessels are 
-reconstructed to a 3D US model and an ICP algorithm is used to align the vessel model to
+reconstructed to a 3D US model and an iterative closest point (ICP) algorithm is used to align the vessel model to
 the preoperative CT data. This method works on a small subvolume of the liver
 and performs a local rigid registration. It helped to improve the
 initial manual alignment in 8/14 datasets and in 2/14 the algorithm did not
@@ -109,7 +109,7 @@ to depth images are used to sample the surface of an organ. Often used imaging s
 laser range scanners \cite{cash2003incorporation}. From these intraoperatively
 created data sets, surfaces are reconstructed and then used for registration. To
 find the mapping between the surfaces, mostly different variants of the iterative
-closest point (ICP) \cite{besl1992method} algorithm are used. 
+closest point \cite{besl1992method} algorithm are used. 
 
 These surface based methods are limited for different reasons. In most cases
 only part of the whole organ can be seen (scanned). The scanned surface may lack
@@ -156,7 +156,8 @@ internal structures of the liver.
 
 \subsection{Liver surface - Based on stereo endoscopic images}
 This approach works for open surgeries as well as for laproscopic ones. They use
-a optically tracked stereo endoscope to record the surface of the liver with 20 frames per second intraoperatively and use
+a optically tracked stereo endoscope to record the surface of the liver with 20
+frames per second (FPS) intraoperatively and use
 the images of each frame to create a dense depth image with subpixel precision \cite{speidel2011intraoperative}.
 From these images the 3D surface positions are calculated. From the growing and resulting
 point cloud the surface is reconstructed in real time (Figure \ref{fig:SurfaceReconstructionStereoBased}).
@@ -170,7 +171,7 @@ the reconstruction of the intraoperative situation.
  \includegraphics[width=0.5\textwidth]{SurfaceReconstructionStereoBased}
  \caption{Reconstruction of liver phantom. a) The phantom. b) Depth image. c)
    Initial overlap of the reconstructed point cloud with the tracked liver
-   model. d) Side view \cite{speidel2011intraoperative}}
+   model. d) Side view \cite{speidel2011intraoperative}.}
   \label{fig:SurfaceReconstructionStereoBased}
 \end{figure}
 
@@ -193,7 +194,7 @@ reconstructed vessels and the surface to register to a preoperative model
   \centering
  \includegraphics[width=0.8\textwidth]{VesselAndSurfaceRefinement}
  \caption{Automatic segmentation of the vessels and the surface from filtered 3D
-   ultrasound images and the resulting step by step improved reconstruction \cite{nam2011automatic}}
+   ultrasound images and the resulting step by step improved reconstruction \cite{nam2011automatic}.}
   \label{fig:VesselAndSurfaceRefinement}
 \end{figure}
 
@@ -201,7 +202,7 @@ reconstructed vessels and the surface to register to a preoperative model
   \centering
  \includegraphics[width=0.8\textwidth]{SurfaceAndVessel}
  \caption{Left: The merged reconstruction of the vessels and the surface. Right:
-   The whole liver reconstructed from a CT scan \cite{nam2011automatic}}
+   The whole liver reconstructed from a CT scan \cite{nam2011automatic}.}
   \label{fig:SurfaceAndVessel}
 \end{figure}
 

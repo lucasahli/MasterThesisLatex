@@ -14,7 +14,7 @@ parts.
 
 \begin{figure}[H]
   \centering
- \includegraphics[width=0.65\textwidth]{FirstFlowChart}
+ \includegraphics[width=0.8\textwidth]{FirstFlowChart}
   \caption{This flow chart shows how the ultrasound image and the corresponding pose reach the
     computer and later to the different parts in the software.}
   \label{fig:FirstFlowChart}
@@ -65,7 +65,7 @@ the ultrasound image is needed in this step.
   \label{fig:contactVSnocontact}
 \end{figure}
 
-A classifier detects whether the US probe has contact to the liver or not. Therefore, a support vector machine (SVM) was trained with US images
+A classifier detects whether the ultrasound (US) probe has contact to the liver or not. Therefore, a support vector machine (SVM) was trained with US images
 from the phantom and from previous navigated liver surgeries. The SVM was trained to
 classify the image into ``no surface contact'' (left) and ``surface contact'' (middle and right).
 The images were labelled as "surface contact" if at least 50\% and the center had contact
@@ -76,7 +76,7 @@ maximum, variance, skewness and kurtosis of the pixel values. All features are c
 on the upper half of the image. For training, a set of 2'311 images (1'056 with contact, 1'255
 without contact) were used. The training data was composed of images from a phantom
 (88\%) and images from previous navigated liver surgeries (12\%). All computations were
-performed using the openCV software package.
+performed using the OpenCV software package.
 
 When the image is classified as ``surface contact'', then the position of the pose is stored
 into the buffer. The buffer has a capacity of 10 positions. When
@@ -88,7 +88,7 @@ is not empty it gets cleard.
 To find outliers in the current buffer the local
 outlier factor is calculated for each position. 
 
-The local outlier factor is a numerical value that describes the local density
+The local outlier factor (LOF) is a numerical value that describes the local density
 of a position compared to its k-nearest neighbors (Figure
 \ref{fig:lofExample}).
 
@@ -150,11 +150,12 @@ point collection to reconstruct the surface from.
 Finally there is a pointcloud with all the collected positions. This pointcloud
 will be used as input for the surface reconstruction algorithm by Hoppe
 \cite{hoppe1992surface}. The algorithm consists
-of three phases. From an unorganized set of points, phase 1 constructs an
+of three phases and it is an implicit reconstruction method. From an unorganized set of points, phase 1 constructs an
 initial dense mesh. Starting with the dense mesh created in phase 1, phase 2
 reduces the number of faces and improves the fit to the data points. In phase 3,
 the surface representation is changed from a piecewise linear one (meshes) to a
-piecewise smooth one. For the computations the implementation in VTK
+piecewise smooth one. For the computations the implementation in the visualization
+toolkit (VTK)
 (SurfaceReconstructionFilter) was used. The two main parameters of this
 reconstruction algorithm have been optimized by applying the grid search method.
 \subsubsection{Grid search for parameter optimization}
@@ -397,7 +398,7 @@ cut through a 3D object with an implicite function. The implicite function of an
 image is a plane, and therefore simple to create by using the image pose. Because the
 cutter can only return a binary mask of where it cuts an object, the cutter
 has to check each object separately. Each time the returned mask from the cutter
-is not empty, contour of the mask is found by using the openCV function
+is not empty, contour of the mask is found by using the OpenCV function
 \textit{findContours}. The found contour is then colored depending on the color
 of the cutted 3D object and added to the mask which will be finally blended with
 the original image. If an object is fully transparent (not visible on the 3D
@@ -427,7 +428,8 @@ during the navigated intervention.
   \label{fig:cutterExample}
 \end{figure}
 \subsection{3D model}
-The complete 3D scene is visualized with the VTK framework. The 3D scene
+The complete 3D scene is visualized with the VTK framework (Figure
+\ref{fig:cutterExample} left image). The 3D scene
 contains the following differently colored models:
 \begin{itemize}
   \item Red $\rightarrow$ Liver surface
@@ -456,20 +458,37 @@ forward button and on the left side is the backward button. On the top is the
 indicator row which shows the visibility indicators for the tracked tools by the
 tracking camera. In the top right corner are the buttons to close the
 application or to take screenshots and a button to reset the view on the 3D screen. 
-\begin{figure}[H]
-  \centering
-  \minipage{0.48\linewidth}
+
+\begin{figure}[h!]  
+\centering  
+\begin{subfigure}{1.0\textwidth}  
+  \centering  
   \includegraphics[width=\linewidth]{uiSizesLayout} 
-  \endminipage
-  \hfill
-  \minipage{0.48\linewidth}
+\end{subfigure}   
+\vskip1em
+\begin{subfigure}{1.0\textwidth}
+  \centering  
   \includegraphics[width=\linewidth]{UIexample}
-  \endminipage
-  \hfill 
- \caption{Left: The structure of the implemented user interface slides. Right: As
-   example the seen slide while sampling the liver surface.}
-  \label{fig:uiExample}
-\end{figure}
+\end{subfigure}  
+\caption{Top: The structure of the implemented user interface slides. Bottom: As
+   example the seen slide while sampling the liver surface.}  
+\label{fig:uiExample}
+\end{figure}  
+
+% \begin{figure}[H]
+%   \centering
+%   \minipage{0.48\linewidth}
+%   \includegraphics[width=\linewidth]{uiSizesLayout} 
+%   \endminipage
+%   \hfill
+%   \minipage{0.48\linewidth}
+%   \includegraphics[width=\linewidth]{UIexample}
+%   \endminipage
+%   \hfill 
+%  \caption{Top: The structure of the implemented user interface slides. Bottom: As
+%    example the seen slide while sampling the liver surface.}
+%   \label{fig:uiExample}
+% \end{figure}
 The content changes on each slide and the forward and backward buttons
 remain but change their visibility depending on the progress status on the
 current slide \ref{fig:uiExample}. This means the forward button is grayed out while not all requirements to continue the surgery as

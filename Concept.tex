@@ -21,8 +21,9 @@ intraoperative models are already created with conventional approaches, they are
 and not for navigation. Before the planning also the tumor has to be
 reconstructed intraoperatively.
 
-The hardware for this concept consist of an optical tracking camera, a tracked
-intraoperative ultrasound and a computer with a 2D and a 3D monitor (Figure \ref{fig:HWcolored}). The
+The hardware for this concept consist of an optical tracking camera (Polaris, NDI, Canada), a tracked
+intraoperative ultrasound (Flex focus 800, BK Medical, Denmark) and a computer with a 2D and a 3D monitor (CAS-One Navigation platform, CAScination AG,
+ Switzerland) (Figure \ref{fig:HWcolored}). The
 tracking camera is used to track the ultrasound and other surgical tools used
 during the intervention. The ultrasound is used to reconstruct the 3D model of
 the liver with its tumors and the computer with the monitors is used to
@@ -111,7 +112,7 @@ image can be used.
   \label{fig:Render}
 \end{figure}
 
-\textcolor{green}{In order to use ... too complicated. Put an image for that and name the transformations.}
+% \textcolor{green}{In order to use ... too complicated. Put an image for that and name the transformations.}
 In order to use the sampled position corresponding to an image, this
 position has to be transformed into the correct coordinate system first. There
 are four different coordinate systems (Figure \ref{fig:Render}).
@@ -136,14 +137,14 @@ can be added to the collection of points to later reconstruct the surface from.
 
 After collecting the surface points, a reconstruction algorithm reconstructs the surface from these points.
 \subsubsection{Surface reconstruction from unorganized points}
-\textcolor{green}{First, collecting the sample ... These terms should match the titles below
-Both other chapters, explain first what the process is for, then what methods are available}
+% \textcolor{green}{First, collecting the sample ... These terms should match the titles below
+% Both other chapters, explain first what the process is for, then what methods are available}
 A surface reconstruction's goal is to create a surface from sampled points \cite{berger2017survey}. Two
 main steps need to be processed. First, acquisition of the data to create a sample. Secondly,
 apply a reconstruction algorithm on the sampled points.
 
 \paragraph{Data acquisition}
-\textcolor{green}{what the process is for, then what methods are available}
+% \textcolor{green}{what the process is for, then what methods are available}
 In order to reconstruct a surface it is necessary to have some information about
 it. Therefore a set of points which lie on or near the unknown surface is acquired first. A
 reconstruction algorithm has then to reconstruct the surface from these points.
@@ -159,9 +160,9 @@ In the field of liver surface scanning only a few articles were published  \cite
 They used stereo laparoscopic cameras to sample the surface.
 
 \paragraph{Reconstruction algorithms}
-\textcolor{green}{ switch explicit and implicit, so you have the same order as in the figure}
+% \textcolor{green}{ switch explicit and implicit, so you have the same order as in the figure}
 
-\textcolor{green}{what the process is for, then what methods are available}
+% \textcolor{green}{what the process is for, then what methods are available}
 The problem
 surface reconstruction aims to solve is the representation of a surface in 
 digital form, from error containing data that has first been scanned in the
@@ -177,7 +178,7 @@ reconstruction problem \cite{hoppe1992surface}. In the past few decades, many
 algorithms that can solve this problem have been published. Nevertheless it is
 still a challanging task that is part of current research \cite{li2018surface}.
 The available reconstrction types can be classified into two groups: implicit
-volume-based and explicit mesh-based reconstructions.
+volume-based and explicit mesh-based reconstructions (Figure \ref{fig:ImplicitVSExplicit}).
 \begin{figure}[H]
   \centering
  \includegraphics[width=\textwidth]{ImplicitVSExplicit}
@@ -197,7 +198,8 @@ vectors in addition to the unorganized points.
 \subparagraph{Explicit mesh-based reconstrction}
 Explicit mesh-based reconstrction methods form a triangular mesh directly from
 the unorganized points. These mesh-based reconstructions are precise but they
-have problems with noise, complex shapes and especially holes in data.
+have problems with noise, complex shapes and especially holes in data (Figure
+\ref{fig:ImplicitVSExplicit} right image).
 \subsection{Tumor Segmentation}
 To reconstruct and later plan the resection of a tumor, the shape
 of the tumor has to be made visible first. Because most liver tumors are not visible from the outside of the liver, an
